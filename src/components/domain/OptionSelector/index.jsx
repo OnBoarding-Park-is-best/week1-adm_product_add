@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BORDER_STYLE, COLORS } from '@utils/constants';
+import { BORDER_STYLE, COLORS, NO_DISCOUNT } from '@utils/constants';
 import { Button } from '@components/base';
 import { ProductItem } from '@components/domain';
 import { Product, Option, AdditionalOption } from './class';
@@ -9,21 +9,22 @@ const tempInitialProduct = (() => {
   const product = new Product();
   const option = new Option();
   const additionalOption = new AdditionalOption();
-  product.img = 'https://via.placeholder.com/350x150';
-  option.name = '';
-  option.normalPrice = '100';
-  option.sellPrice = '10';
-  const a = Number(option.normalPrice);
-  const b = Number(option.sellPrice);
-  option.discountPercent = String(Math.floor(((a - b) / a) * 100));
-  option.stock = '';
   additionalOption.name = '';
   additionalOption.normalPrice = '';
+  option.name = '';
+  option.normalPrice = '0';
+  option.sellPrice = '0';
+  option.stock = '';
   // option.name = 'Lorem Ipsum';
   // option.normalPrice = '10,000';
   // option.sellPrice = '9,000';
   // option.stock = '100';
+  const a = Number(option.normalPrice);
+  const b = Number(option.sellPrice);
+  option.discount =
+    a !== b ? String(Math.floor(((a - b) / a) * 100)) : NO_DISCOUNT;
   option.additionalOptions.push(additionalOption);
+  product.img = 'https://via.placeholder.com/350x150';
   product.options.push(option);
   return product;
 })();

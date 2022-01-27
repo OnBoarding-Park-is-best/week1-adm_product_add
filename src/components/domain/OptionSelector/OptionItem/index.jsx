@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BORDER_STYLE, COLORS, TAX_OPTIONS } from '@utils/constants';
+import {
+  BORDER_STYLE,
+  COLORS,
+  TAX_OPTIONS,
+  NO_DISCOUNT,
+} from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
 import { Option } from '../class';
 
@@ -10,7 +15,7 @@ const OptionItem = ({ info }) => {
     name,
     normalPrice,
     sellPrice,
-    discountPercent,
+    discount,
     stock,
     tax,
     additionalOptions,
@@ -32,9 +37,7 @@ const OptionItem = ({ info }) => {
           value={normalPrice}
         />
         <Unit>원</Unit>
-        <Unit>
-          {normalPrice !== sellPrice ? `${discountPercent}%` : '할인율 없음'}
-        </Unit>
+        <Unit>{discount === NO_DISCOUNT ? NO_DISCOUNT : `${discount}%`}</Unit>
         <Input
           name="sellPrice"
           placeholder="상품 판매가 (필수)"
