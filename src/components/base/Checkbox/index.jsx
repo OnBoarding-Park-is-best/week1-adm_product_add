@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { COLORS } from '@utils/constants';
+import useToggle from '@hooks/useToggle';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CheckBox = ({id, name, onChange, ...props}) => {
-  const [ isChecked, setChecked ] = useState(false);
+  const [ isChecked, toggle ] = useToggle(false);
 
-  const checkHandler = ({target}) => {
-    setChecked(prev => !prev);
+  const checkHandler = (e) => {
+    toggle();
   }
 
   return (
