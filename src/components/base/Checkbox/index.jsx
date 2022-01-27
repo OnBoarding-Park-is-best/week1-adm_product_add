@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { COLORS } from '@utils/constants';
 import styled from 'styled-components';
 
-const CheckboxComponent = ({id, name, onChange}) => {
+const CheckBox = ({id, name, onChange, ...props}) => {
   const [ isChecked, setChecked ] = useState(false);
 
   const checkHandler = ({target}) => {
@@ -10,25 +11,30 @@ const CheckboxComponent = ({id, name, onChange}) => {
   }
 
   return (
-    <CheckboxLabel htmlFor={id}>
-      <CheckboxInput id={id} type="checkbox" checked={isChecked} onChange={checkHandler}/>
-      <StyledCheckbox checked={isChecked}>
+    <CheckBoxLabel htmlFor={id}>
+      <CheckBoxInput id={id} type="checkbox" checked={isChecked} onChange={checkHandler}/>
+      <StyledCheckBox checked={isChecked}>
         <Icon viewBox='0 0 24 24'>
           <polyline points="19 7 10 17 5 12" />
         </Icon>
-      </StyledCheckbox>
+      </StyledCheckBox>
       { name }
-    </CheckboxLabel>
+    </CheckBoxLabel>
   )
-}
+};
 
-const CheckboxLabel = styled.label`
+CheckBox.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+};
+
+const CheckBoxLabel = styled.label`
   display: flex;
   align-items: center;
   margin: 10px 0;
 `;
 
-const CheckboxInput = styled.input`
+const CheckBoxInput = styled.input`
   position: absolute; 
   width: 1px;
   height: 1px; 
@@ -47,7 +53,7 @@ const Icon = styled.svg`
   stroke-width: 2px; 
 `;
 
-const StyledCheckbox = styled.div`
+const StyledCheckBox = styled.div`
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
@@ -60,4 +66,4 @@ const StyledCheckbox = styled.div`
   }
 `;
 
-export default CheckboxComponent;
+export default CheckBox;
