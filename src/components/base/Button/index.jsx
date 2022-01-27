@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { COLORS } from '@utils/constants';
 import buttonStyle from '@styles/buttonStyle';
 
@@ -11,6 +13,17 @@ const Button = ({ children, plusIcon, deleteIcon, ...props }) => {
       <CategoryDel>{`${deleteIcon ? 'X' : ''}`}</CategoryDel>
     </CustomBtn>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  plusIcon: PropTypes.bool,
+  deleteIcon: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  plusIcon: false,
+  deleteIcon: false,
 };
 
 const CustomBtn = styled.button`
