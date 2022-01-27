@@ -9,6 +9,7 @@ export const COLORS = {
   grey_10: '#efefef', // 매우 옅은 회색 (이미지 첨부 배경)
   border: '#e3e3e3', // border 컬러
   red: '#cd4950', // 삭제버튼
+  green: '#50c24e',
 };
 
 export const BORDER_STYLE = `2px solid ${COLORS.border}`;
