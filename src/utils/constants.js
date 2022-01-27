@@ -7,6 +7,8 @@ export const COLORS = {
   grey_60: '#e3e3e3', // 짙은 회색 배경 (상품 옵션)
   grey_30: '#fbfbfb', // 옅은 배경 회색
   grey_10: '#efefef', // 매우 옅은 회색 (이미지 첨부 배경)
-  border: '#f7f6f7', // border 컬러
+  border: '#e3e3e3', // border 컬러
   red: '#cd4950', // 삭제버튼
 };
+
+export const BORDER_STYLE = `2px solid ${COLORS.border}`;
