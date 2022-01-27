@@ -18,7 +18,6 @@ const Others = () => {
 }
 
 const Wrap = styled.div`
-  // width: 750px;
   border: ${BORDER_STYLE}
 `
 

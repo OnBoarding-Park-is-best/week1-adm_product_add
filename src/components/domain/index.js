@@ -1,1 +1,2 @@
-export { default as Others } from './OtherSetting';
+export { default as Others } from './Others';
+export { default as Benefit } from './Benefit';
