@@ -13,3 +13,5 @@ export const COLORS = {
 };
 
 export const BORDER_STYLE = `2px solid ${COLORS.border}`;
+
+export const TAX_OPTIONS = ['비과세', '과세'];
