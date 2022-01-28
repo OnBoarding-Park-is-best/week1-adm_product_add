@@ -66,7 +66,6 @@ ImageUploadContainer.defaultProps = {
 
 const Container = styled.div`
   display: flex;
-  border: 1px solid ${COLORS.border};
   padding: 12px;
   gap: 24px;
   height: auto;
