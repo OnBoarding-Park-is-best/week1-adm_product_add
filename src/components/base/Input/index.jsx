@@ -20,6 +20,7 @@ const Input = forwardRef(
         name={name}
         className={status || undefined}
         padding={padding}
+        height={height}
         {...props}
         style={{ ...props.style }}
         ref={ref}
@@ -41,6 +42,7 @@ Input.propTypes = {
 Input.defaultProps = {
   onChange: () => {},
   padding: '8px',
+  height: '1rem',
   error: false,
   success: false,
   style: {},
