@@ -1,22 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
-import useOptionSelector from '@hooks/useOptionSelector';
 import { Button } from '@components/base';
 import ProductItem from './ProductItem';
 
-const OptionSelector = () => {
-  const {
-    products,
-    handleProductAdd,
-    handleProductDelete,
-    handleOptionAdd,
-    handleOptionDelete,
-    handleAdditionalAdd,
-    handleAdditionalDelete,
-    handleImageChange,
-    handleInputChange,
-  } = useOptionSelector();
+const OptionSelector = ({
+  products,
+  handleProductAdd,
+  handleProductDelete,
+  handleOptionAdd,
+  handleOptionDelete,
+  handleAdditionalAdd,
+  handleAdditionalDelete,
+  handleImageChange,
+  handleInputChange,
+}) => {
   return (
     <Container>
       <ContentTitle>
