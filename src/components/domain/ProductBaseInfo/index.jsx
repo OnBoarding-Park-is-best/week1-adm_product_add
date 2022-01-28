@@ -5,7 +5,9 @@ import ContentItem from '@components/base/ContentItem';
 import CheckBox from '@components/base/CheckBox';
 import styled from 'styled-components';
 import Button from '@components/base/Button';
+import Input from '@components/base/Input';
 import { FILTER_LIST, BORDER_STYLE } from '@utils/constants';
+import { v4 } from 'uuid';
 
 const ProductBaseInfo = () => {
   const [categoryChecked, setCategoryChecked] = useState([]);
@@ -20,56 +22,107 @@ const ProductBaseInfo = () => {
     }
   };
 
+  const removeFilter = (e) => {
+    setCategoryChecked(
+      categoryChecked.filter(
+        (categoryChk) => categoryChk !== e.target.innerText,
+      ),
+    );
+    FILTER_LIST.filter((list) => {
+      if (list.title === e.target.innerText) {
+      }
+    });
+  };
+
   console.log('categoryChecked', categoryChecked);
 
   return (
-    <div>
+    <>
       <ContentContainer title={'상품 기본 정보'}>
         <ContentItem title={'카테고리'} required>
-          <CategoryWrap>
-            <div>
+          <Wrap>
+            <CategorySelect>
               {FILTER_LIST.map((list) => {
                 return <CheckBox onChange={checkedHandler} name={list.title} />;
               })}
-            </div>
-            <aside>
+            </CategorySelect>
+            <CategoryBtn>
               {categoryChecked &&
                 categoryChecked.map((chk) => {
                   return (
-                    <Button selectCategory width="100%">
+                    <Button
+                      onClick={removeFilter}
+                      selectCategory
+                      deleteIcon
+                      width="100%"
+                    >
                       {chk}
                     </Button>
                   );
                 })}
-            </aside>
-          </CategoryWrap>
+            </CategoryBtn>
+          </Wrap>
+        </ContentItem>
+        <ContentItem title={'필터 태그'}>
+          <Wrap>
+            <Input />
+          </Wrap>
+        </ContentItem>
+        <ProductWrap>
+          <ContentItem title={'상품명'} required>
+            <Wrap>
+              <Input />
+            </Wrap>
+          </ContentItem>
+          <ContentItem title={'상품 코드'}>
+            <Wrap>{v4}1234</Wrap>
+          </ContentItem>
+        </ProductWrap>
+        <ContentItem title={'상품 구성 소개 정보'} required>
+          <Wrap>
+            <Input />
+          </Wrap>
+        </ContentItem>
+        <ContentItem title={'상품 썸네일'}>
+          <ImageUploadContainer />
+        </ContentItem>
+        <ContentItem title={'상품 대표 이미지'}>
+          <ImageUploadContainer multiple />
+        </ContentItem>
+        <ContentItem title={'상품 총 재고'} required>
+          <Wrap>1023개</Wrap>
         </ContentItem>
       </ContentContainer>
-      <ImageUploadContainer multiple />
-    </div>
+    </>
   );
 };
 
-const CategoryWrap = styled.article`
+const Wrap = styled.article`
   display: flex;
   align-items: flex-start;
   padding: 1rem;
   gap: 1rem;
+`;
 
-  & > div {
-    flex: 2;
-    padding: 1rem;
-    border: ${BORDER_STYLE};
-    overflow-y: scroll;
-    height: 15rem;
-  }
+const CategorySelect = styled.div`
+  flex: 2;
+  padding: 1rem;
+  border: ${BORDER_STYLE};
+  overflow-y: scroll;
+  height: 15rem;
+`;
 
-  & > aside {
-    flex: 1;
+const CategoryBtn = styled.aside`
+  flex: 1;
+  overflow-y: scroll;
+  height: 15rem;
+  padding: 1rem;
+  border: ${BORDER_STYLE};
+`;
 
-    padding: 1rem;
-    border: ${BORDER_STYLE};
-  }
+const ProductWrap = styled.div`
+  display: flex;
+  border-bottom: ${BORDER_STYLE};
 `;
 
 export default ProductBaseInfo;

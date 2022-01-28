@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { COLORS, BORDER_STYLE } from '@utils/constants';
 
-const ContentItem = ({ title, required, children }) => {
+const ContentItem = ({ title, required, children, borderNone }) => {
   return (
     <Container>
       <Title>
