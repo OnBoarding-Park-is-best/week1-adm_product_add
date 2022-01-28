@@ -5,7 +5,7 @@ import { COLORS, BORDER_STYLE } from '@utils/constants';
 
 const ContentItem = ({ title, required, children, borderNone }) => {
   return (
-    <Container>
+    <Container borderNone={borderNone}>
       <Title>
         <h3>{`${title}${required ? ' *' : ''}`}</h3>
       </Title>
@@ -17,11 +17,13 @@ const ContentItem = ({ title, required, children, borderNone }) => {
 ContentItem.propTypes = {
   title: PropTypes.string,
   required: PropTypes.bool,
+  borderNone: PropTypes.bool,
   children: PropTypes.node,
 };
 
 ContentItem.defaultProps = {
   required: false,
+  borderNone: false,
 };
 
 const Container = styled.section`
@@ -29,7 +31,7 @@ const Container = styled.section`
   justify-content: flex-start;
   align-items: stretch;
   padding: 0;
-  border-bottom: ${BORDER_STYLE};
+  border-bottom: ${({ borderNone }) => (borderNone ? 'none' : BORDER_STYLE)};
 
   &:last-child {
     border-bottom: none;

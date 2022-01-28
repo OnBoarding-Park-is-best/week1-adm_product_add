@@ -69,7 +69,7 @@ const ProductBaseInfo = () => {
           </Wrap>
         </ContentItem>
         <ProductWrap>
-          <ContentItem title={'상품명'} required>
+          <ContentItem title={'상품명'} borderNone required>
             <Wrap>
               <Input />
             </Wrap>
