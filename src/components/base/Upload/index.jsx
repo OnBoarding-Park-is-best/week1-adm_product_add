@@ -47,7 +47,7 @@ Upload.propTypes = {
 
 Upload.defaultProps = {
   name: 'upload',
-  multiple: true,
+  multiple: false,
   onChange: () => {},
 };
 
