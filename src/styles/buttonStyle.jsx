@@ -46,6 +46,16 @@ const buttonStyle = css`
       padding: 0.1rem 0.4rem;
       background-color: ${COLORS.yellowgreen};
     `}
+
+    ${(props) =>
+    props.circleGrey &&
+    css`
+      border: 1px solid ${COLORS.grey};
+      padding: 0;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+    `}
 `;
 
 export default buttonStyle;

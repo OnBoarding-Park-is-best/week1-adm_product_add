@@ -1,5 +1,5 @@
-import { COLORS } from '@utils/constants';
 import useToggle from '@hooks/useToggle';
+import { COLORS } from '@utils/constants';
 import { Icon } from '@components/base';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
