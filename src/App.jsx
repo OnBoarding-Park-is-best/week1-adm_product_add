@@ -2,13 +2,24 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Layout, OptionSelector, Benefit, Others } from '@components/domain';
 import useOptionSelector from '@hooks/useOptionSelector';
-import scrollStyle from '@styles/scrollStyle';
 
 const App = () => {
   const optionSelector = useOptionSelector();
   const [isBenefit, setBenefit] = useState(true);
   const [isPresent, setPresent] = useState(false);
   const { products } = optionSelector;
+
+  const handleOthersChange = useCallback((e) => {
+    const name = e.target.name;
+    if (name === 'benefit') {
+      setBenefit((prev) => !prev);
+      return;
+    }
+    if (name === 'present') {
+      setPresent((prev) => !prev);
+    }
+  }, []);
+
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -26,8 +37,8 @@ const App = () => {
     <Layout>
       <Form id="register" onSubmit={handleSubmit}>
         <OptionSelector {...optionSelector} />
-        <Benefit checked={isBenefit} />
-        <Others checked={isPresent} />
+        <Benefit checked={isBenefit} onChange={handleOthersChange} />
+        <Others checked={isPresent} onChange={handleOthersChange} />
       </Form>
     </Layout>
   );
@@ -39,8 +50,6 @@ const Form = styled.form`
   justify-content: flex-start;
   align-items: stretch;
   gap: 3em;
-  padding: 2em 1em;
-  overflow-y: auto;
-  ${scrollStyle}
 `;
+
 export default App;

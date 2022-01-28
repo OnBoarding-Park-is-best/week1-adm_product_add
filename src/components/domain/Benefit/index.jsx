@@ -9,7 +9,7 @@ const Benefit = ({ checked, onChange }) => {
     <ContentContainer title="상품 혜택 허용 설정">
       <ContentItem title="마일리지 적립">
         <StyledToggle>
-          <Toggle name="mileage" checked={checked} onChange={onChange} />
+          <Toggle name="benefit" checked={checked} onChange={onChange} />
         </StyledToggle>
       </ContentItem>
     </ContentContainer>
