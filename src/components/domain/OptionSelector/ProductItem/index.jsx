@@ -110,7 +110,7 @@ const ImageContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 12em;
-  border: ${BORDER_STYLE};
+  border: ${({ img }) => (img ? 'none' : BORDER_STYLE)};
   background: ${({ img }) =>
     img ? `url("${img}") no-repeat center/110%` : COLORS.grey_60};
 `;
