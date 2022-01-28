@@ -1,31 +1,25 @@
 import { ContentContainer } from '@components/base';
 import { ContentItem } from '@components/base';
 import { Toggle } from '@components/base';
-import { BORDER_STYLE } from '@utils/constants';
 import styled from 'styled-components';
 
 const Others = () => {
   return (
-    <Wrap>
-      <ContentContainer title="기타 설정" />
+    <ContentContainer title="기타 설정">
       <ContentItem title="감사카드 제공">
         <StyledToggle>
-          <Toggle/>
+          <Toggle />
         </StyledToggle>
       </ContentItem>
-    </Wrap>
-  )
-}
-
-const Wrap = styled.div`
-  border: ${BORDER_STYLE}
-`
+    </ContentContainer>
+  );
+};
 
 const StyledToggle = styled.div`
   height: 100%;
   display: flex;
   margin-left: 32px;
   align-items: center;
-`
+`;
 
 export default Others;
