@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
 import { Button, Icon } from '@components/base';
-import { OptionItem } from '@components/domain';
+import OptionItem from '../OptionItem';
 
 const ProductItem = ({
   id,

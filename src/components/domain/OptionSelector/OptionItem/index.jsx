@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BORDER_STYLE, COLORS, TAX_OPTIONS } from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
-import { AdditionalItem } from '@components/domain';
+import AdditionalItem from '../AdditionalItem';
 import { calcDiscount } from '@utils/price';
 
 const OptionItem = ({

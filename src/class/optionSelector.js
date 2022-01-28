@@ -1,5 +1,3 @@
-import { NO_DISCOUNT } from '@utils/constants';
-
 export class AdditionalOption {
   name = '';
   normalPrice = '';

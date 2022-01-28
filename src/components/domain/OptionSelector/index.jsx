@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
 import useOptionSelector from '@hooks/useOptionSelector';
 import { Button } from '@components/base';
-import { ProductItem } from '@components/domain';
+import ProductItem from './ProductItem';
 
 const OptionSelector = () => {
   const {
