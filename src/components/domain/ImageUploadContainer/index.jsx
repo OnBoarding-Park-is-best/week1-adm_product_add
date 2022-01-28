@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { COLORS } from '@utils/constants';
 import { Button, Upload, Icon } from '@components/base';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
