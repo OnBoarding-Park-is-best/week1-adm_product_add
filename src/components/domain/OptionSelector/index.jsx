@@ -55,6 +55,15 @@ const Content = styled.div`
   min-height: 50vh;
   max-height: 80vh;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${COLORS.grey};
+    border-radius: 5px;
+  }
 `;
 
 const Placeholder = styled.div`
