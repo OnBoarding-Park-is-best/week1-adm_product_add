@@ -66,6 +66,7 @@ const ProductBaseInfo = () => {
         <ContentItem title={'필터 태그'}>
           <Wrap>
             <Input />
+            <Button>검색</Button>
           </Wrap>
         </ContentItem>
         <ProductWrap>

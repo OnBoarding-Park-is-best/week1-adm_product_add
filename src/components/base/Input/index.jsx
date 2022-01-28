@@ -53,7 +53,7 @@ const StyledInput = styled.input`
   border: 1px solid ${COLORS.border};
   background-color: transparent;
   outline: none;
-  padding: ${({ padding }) => padding};
+  padding-right: ${({ padding }) => padding};
 
   &::placeholder {
     color: ${COLORS.grey};
