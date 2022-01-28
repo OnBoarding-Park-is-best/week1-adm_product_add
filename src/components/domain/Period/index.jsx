@@ -1,68 +1,95 @@
+import { PERIOD_NAME } from '@utils/constants';
 import { ContentContainer, ContentItem } from '@components/base';
-import { DateInput, RadioBox } from '@components/base';
+import { DateInput } from '@components/base';
+import RadioList from './RadioList/index';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-export const RadioList = () => {
-  const [select, setSelect] = useState({
-    list: ['제한없음', '미노출', '노출 기간 설정'],
-    selected: '제한없음',
+const Period = () => {
+  // 라디오용
+  const [exposureSelect, setExposureSelect] = useState({
+    list: PERIOD_NAME,
+    selected: PERIOD_NAME[0],
   });
 
-  const handleChange = (e) => {
-    setSelect({
-      ...select,
+  const [saleSelect, setSaleSelect] = useState({
+    list: PERIOD_NAME,
+    selected: PERIOD_NAME[0],
+  });
+
+  const handleExposureChange = (e) => {
+    setExposureSelect({
+      ...exposureSelect,
       selected: e.target.value,
     });
   };
 
-  return (
-    <RadioContainer>
-      {select.list &&
-        select.list.map((value, i) => (
-          <RadioBox
-            key={i}
-            id={i}
-            value={value}
-            checked={select.selected === value}
-            onChange={handleChange}
-          />
-        ))}
-    </RadioContainer>
-  );
-};
+  const handleSaleChange = (e) => {
+    setSaleSelect({
+      ...saleSelect,
+      selected: e.target.value,
+    });
+  };
 
-const RadioContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
+  // 날짜용
+  const [exposureStartDate, setExposureStartDate] = useState(null);
+  const [exposureEndDate, setExposureEndDate] = useState(null);
+  const [saleStartDate, setSaleStartDate] = useState(null);
+  const [saleEndDate, setSaleEndDate] = useState(null);
 
-const Period = () => {
-  const [date, setDate] = useState(null);
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
+  const handleExposureStartDateChange = (newDate) => {
+    setExposureStartDate(newDate);
+  };
+  const handleExposureEndDateChange = (newDate) => {
+    setExposureEndDate(newDate);
+  };
+
+  const handleSaleStartDateChange = (newDate) => {
+    setSaleStartDate(newDate);
+  };
+  const handleSaleEndDateChange = (newDate) => {
+    setSaleEndDate(newDate);
   };
 
   return (
     <ContentContainer title="노출 및 판매 기간 설정">
       <ContentItem title="상품 노출 기한">
         <StyledRadio>
-          <RadioList />
+          <RadioList select={exposureSelect} onChange={handleExposureChange} />
           <DateContainer>
-            <DateInput today withTime date={date} onChange={handleDateChange} />
+            <DateInput
+              today
+              withTime
+              date={exposureStartDate}
+              onChange={handleExposureStartDateChange}
+            />
             <span> ~ </span>
-            <DateInput today withTime date={date} onChange={handleDateChange} />
+            <DateInput
+              today
+              withTime
+              date={exposureEndDate}
+              onChange={handleExposureEndDateChange}
+            />
           </DateContainer>
         </StyledRadio>
       </ContentItem>
       <ContentItem title="상품 판매 기한">
         <StyledRadio>
-          <RadioList />
+          <RadioList select={saleSelect} onChange={handleSaleChange} />
           <DateContainer>
-            <DateInput today withTime date={date} onChange={handleDateChange} />
+            <DateInput
+              today
+              withTime
+              date={saleStartDate}
+              onChange={handleSaleStartDateChange}
+            />
             <span> ~ </span>
-            <DateInput today withTime date={date} onChange={handleDateChange} />
+            <DateInput
+              today
+              withTime
+              date={saleEndDate}
+              onChange={handleSaleEndDateChange}
+            />
           </DateContainer>
         </StyledRadio>
       </ContentItem>
