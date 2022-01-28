@@ -1,18 +1,24 @@
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { ContentContainer } from '@components/base';
 import { ContentItem } from '@components/base';
 import { Toggle } from '@components/base';
-import styled from 'styled-components';
 
-const Others = () => {
+const Benefit = ({ checked, onChange }) => {
   return (
     <ContentContainer title="상품 혜택 허용 설정">
       <ContentItem title="마일리지 적립">
         <StyledToggle>
-          <Toggle on />
+          <Toggle name="mileage" checked={checked} onChange={onChange} />
         </StyledToggle>
       </ContentItem>
     </ContentContainer>
   );
+};
+
+Benefit.propTypes = {
+  checked: PropTypes.bool,
+  onCHangeChange: PropTypes.func.isRequired,
 };
 
 const StyledToggle = styled.div`
@@ -22,4 +28,4 @@ const StyledToggle = styled.div`
   align-items: center;
 `;
 
-export default Others;
+export default Benefit;
