@@ -30,7 +30,7 @@ export const FILTER_LIST = [
   { id: v4(), title: '샤키테리' },
 ];
 
-export const FILTER_Tags = [
+export const FILTER_TAGS = [
   { id: v4(), title: '안심' },
   { id: v4(), title: '등심' },
   { id: v4(), title: '채끝' },
