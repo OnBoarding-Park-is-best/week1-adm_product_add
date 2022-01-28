@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageUploadContainer from '@components/domain/ImageUploadContainer';
 import ContentContainer from '@components/base/ContentContainer';
 import ContentItem from '@components/base/ContentItem';
@@ -6,12 +6,15 @@ import CheckBox from '@components/base/CheckBox';
 import styled from 'styled-components';
 import Button from '@components/base/Button';
 import Input from '@components/base/Input';
-import { FILTER_LIST, BORDER_STYLE } from '@utils/constants';
+import FilterTags from '@components/domain/ProductBaseInfo/FIlterTag';
+import { FILTER_LIST, BORDER_STYLE, FILTER_TAGS } from '@utils/constants';
 import { v4 } from 'uuid';
 
 const ProductBaseInfo = () => {
   const [categoryChecked, setCategoryChecked] = useState([]);
   const [showFilterTagSearch, setShowFilterTagSearch] = useState(false);
+  const [searchTag, setSearchTag] = useState('');
+  console.log('searchTag', searchTag);
 
   const checkedHandler = (e) => {
     if (e.target.checked === true) {
@@ -39,7 +42,13 @@ const ProductBaseInfo = () => {
     setShowFilterTagSearch(!showFilterTagSearch);
   };
 
-  console.log('categoryChecked', categoryChecked);
+  const filteredTags = FILTER_TAGS.filter((tag) => {
+    if (searchTag == '') {
+      return tag;
+    } else if (tag.title.toLowerCase().includes(searchTag.toLowerCase())) {
+      return tag;
+    }
+  });
 
   return (
     <>
@@ -70,20 +79,29 @@ const ProductBaseInfo = () => {
         </ContentItem>
         <ContentItem title={'필터 태그'}>
           <Wrap>
-            <Input onClick={showFilterTag} height="3rem" padding="5rem" />
+            <Input
+              placeholder="필터태그를 검색해 주세요."
+              onClick={showFilterTag}
+              onChange={(e) => {
+                setSearchTag(e.target.value);
+              }}
+              height="3rem"
+              padding="5rem"
+            />
             <BtnWrap>
               <Button onClick={showFilterTag} position="absolute">
                 검색
               </Button>
             </BtnWrap>
           </Wrap>
-
-          {showFilterTagSearch && <SearchFilterTag>true</SearchFilterTag>}
+          {showFilterTagSearch && (
+            <FilterTags searchTag={searchTag} tagList={filteredTags} />
+          )}
         </ContentItem>
         <ProductWrap>
           <ContentItem title={'상품명'} borderNone required>
             <Wrap>
-              <Input height="3rem" />
+              <Input height="3rem" placeholder="상품명을 입력해 주세요" />
             </Wrap>
           </ContentItem>
           <ContentItem title={'상품 코드'}>
@@ -141,12 +159,6 @@ const BtnWrap = styled.div`
   position: absolute;
   margin-top: 5px;
   right: 1.5rem;
-`;
-
-const SearchFilterTag = styled.div`
-  margin: 1rem;
-  padding: 1rem;
-  border: ${BORDER_STYLE};
 `;
 
 export default ProductBaseInfo;
