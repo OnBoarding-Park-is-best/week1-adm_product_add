@@ -67,8 +67,8 @@ const ProductBaseInfo = () => {
 
   return (
     <>
-      <ContentContainer title={'상품 기본 정보'}>
-        <ContentItem title={'카테고리'} required>
+      <ContentContainer title="상품 기본 정보">
+        <ContentItem title="카테고리" required>
           <Wrap>
             <CategorySelect>
               {FILTER_LIST.map((list) => {
@@ -110,6 +110,7 @@ const ProductBaseInfo = () => {
               }}
               height="3rem"
               padding="5rem"
+              name="filterTagInput"
             />
             <BtnWrap>
               <Button
@@ -137,16 +138,20 @@ const ProductBaseInfo = () => {
         <ProductWrap>
           <ContentItem title={'상품명'} borderNone required>
             <Wrap>
-              <Input height="3rem" placeholder="상품명을 입력해 주세요" />
+              <Input
+                name="productName"
+                height="3rem"
+                placeholder="상품명을 입력해 주세요"
+              />
             </Wrap>
           </ContentItem>
           <ContentItem title={'상품 코드'}>
-            <Wrap>{v4}1234</Wrap>
+            <Wrap>{v4()}</Wrap>
           </ContentItem>
         </ProductWrap>
         <ContentItem title={'상품 구성 소개 정보'} required>
           <Wrap>
-            <Input height="3rem" />
+            <Input name="productInfo" height="3rem" />
           </Wrap>
         </ContentItem>
         <ContentItem title={'상품 썸네일'}>
