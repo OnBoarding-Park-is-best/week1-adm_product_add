@@ -82,6 +82,7 @@ const OptionItem = ({
 };
 
 OptionItem.propTypes = {
+  id: PropTypes.number.isRequired,
   info: PropTypes.object.isRequired,
   onOptionDelete: PropTypes.func.isRequired,
   onAdditionalAdd: PropTypes.func.isRequired,

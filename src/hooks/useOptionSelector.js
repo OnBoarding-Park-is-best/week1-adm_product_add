@@ -27,25 +27,22 @@ const useOptionSelector = () => {
   const [products, setProducts] = useState([]);
 
   const handleProductAdd = useCallback(() => {
-    setProducts((products) => [...products, new Product()]);
+    setProducts((prev) => [...prev, new Product()]);
   }, []);
 
   const handleProductDelete = useCallback((e) => {
     const id = getProductIdFromEvent(e);
-    setProducts((products) => products.filter((_, idx) => idx !== id));
+    setProducts((prev) => prev.filter((_, idx) => idx !== id));
   }, []);
 
-  const handleOptionAdd = useCallback(
-    (e) => {
-      const productId = getProductIdFromEvent(e);
-      const copiedProduct = deepCopy(products[productId]);
+  const handleOptionAdd = useCallback((e) => {
+    const productId = getProductIdFromEvent(e);
+    setProducts((prev) => {
+      const copiedProduct = deepCopy(prev[productId]);
       copiedProduct.options.push(new Option());
-      setProducts((products) =>
-        products.map((one, idx) => (productId !== idx ? one : copiedProduct)),
-      );
-    },
-    [products],
-  );
+      return prev.map((one, idx) => (productId !== idx ? one : copiedProduct));
+    });
+  }, []);
 
   const handleOptionDelete = useCallback(
     (e) => {
@@ -53,40 +50,38 @@ const useOptionSelector = () => {
         handleProductDelete(e);
         return;
       }
-      const product = products[getProductIdFromEvent(e)];
       const optionId = getOptionIdFromEvent(e);
-      const copiedProduct = deepCopy(product);
-      copiedProduct.options = product.options.filter(
-        (_, idx) => optionId !== idx,
-      );
-      setProducts((products) =>
-        products.map((one) => (one !== product ? one : copiedProduct)),
-      );
+
+      setProducts((prev) => {
+        const product = prev[getProductIdFromEvent(e)];
+        const copiedProduct = deepCopy(product);
+        copiedProduct.options = product.options.filter(
+          (_, idx) => optionId !== idx,
+        );
+        return prev.map((one) => (one !== product ? one : copiedProduct));
+      });
     },
-    [products, handleProductDelete],
+    [handleProductDelete],
   );
 
-  const handleAdditionalAdd = useCallback(
-    (e) => {
-      const productId = getProductIdFromEvent(e);
-      const optionId = getOptionIdFromEvent(e);
-      const copiedProduct = deepCopy(products[productId]);
-      const copiedOption = deepCopy(products[productId].options[optionId]);
+  const handleAdditionalAdd = useCallback((e) => {
+    const productId = getProductIdFromEvent(e);
+    const optionId = getOptionIdFromEvent(e);
+    setProducts((prev) => {
+      const copiedProduct = deepCopy(prev[productId]);
+      const copiedOption = deepCopy(prev[productId].options[optionId]);
       copiedOption.additionalOptions.push(new AdditionalOption());
       copiedProduct.options[optionId] = copiedOption;
-      setProducts((products) =>
-        products.map((one, idx) => (productId !== idx ? one : copiedProduct)),
-      );
-    },
-    [products],
-  );
+      return prev.map((one, idx) => (productId !== idx ? one : copiedProduct));
+    });
+  }, []);
 
-  const handleAdditionalDelete = useCallback(
-    (e) => {
-      const productId = getProductIdFromEvent(e);
-      const optionId = getOptionIdFromEvent(e);
-      const additionalId = getAdditionalOptionIdFromEvent(e);
-      const product = products[productId];
+  const handleAdditionalDelete = useCallback((e) => {
+    const productId = getProductIdFromEvent(e);
+    const optionId = getOptionIdFromEvent(e);
+    const additionalId = getAdditionalOptionIdFromEvent(e);
+    setProducts((prev) => {
+      const product = prev[productId];
       const option = product.options[optionId];
       const copiedProduct = deepCopy(product);
       const copiedOption = deepCopy(option);
@@ -94,20 +89,24 @@ const useOptionSelector = () => {
         (_, idx) => idx !== additionalId,
       );
       copiedProduct.options[optionId] = copiedOption;
-      setProducts((products) =>
-        products.map((one, idx) => (productId !== idx ? one : copiedProduct)),
-      );
-    },
-    [products],
-  );
+      return prev.map((one, idx) => (productId !== idx ? one : copiedProduct));
+    });
+  }, []);
 
-  const handleImageChange = (e, src) => {
+  const handleImageChange = useCallback((e, src) => {
     const productId = getProductIdFromEvent(e);
-    const copiedProduct = deepCopy(products[productId]);
-    copiedProduct.img = src;
-    setProducts((products) =>
-      products.map((one, idx) => (productId !== idx ? one : copiedProduct)),
-    );
+    setProducts((prev) => {
+      const copiedProduct = deepCopy(prev[productId]);
+      copiedProduct.img = src;
+      return prev.map((one, idx) => (productId !== idx ? one : copiedProduct));
+    });
+  }, []);
+
+  const handleInputChange = (e) => {
+    const productId = getProductIdFromEvent(e);
+    const optionId = getOptionIdFromEvent(e);
+    const additionalId = getAdditionalOptionIdFromEvent(e);
+    console.log(productId, optionId, additionalId);
   };
 
   return {
@@ -119,6 +118,7 @@ const useOptionSelector = () => {
     handleAdditionalAdd,
     handleAdditionalDelete,
     handleImageChange,
+    handleInputChange,
   };
 };
 

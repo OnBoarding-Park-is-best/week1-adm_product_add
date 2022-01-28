@@ -15,6 +15,7 @@ const OptionSelector = () => {
     handleAdditionalAdd,
     handleAdditionalDelete,
     handleImageChange,
+    handleInputChange,
   } = useOptionSelector();
   return (
     <Container>
@@ -38,6 +39,7 @@ const OptionSelector = () => {
                 onAdditionalAdd={handleAdditionalAdd}
                 onAdditionalDelete={handleAdditionalDelete}
                 onImageChange={handleImageChange}
+                onInputChange={handleInputChange}
               />
             ))}
           </>

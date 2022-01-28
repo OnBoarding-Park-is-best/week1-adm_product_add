@@ -25,6 +25,7 @@ const AdditionalItem = ({ id, info, onAdditionalDelete }) => {
 };
 
 AdditionalItem.propTypes = {
+  id: PropTypes.number.isRequired,
   info: PropTypes.object.isRequired,
   onAdditionalDelete: PropTypes.func.isRequired,
 };

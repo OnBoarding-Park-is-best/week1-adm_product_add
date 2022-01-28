@@ -72,12 +72,14 @@ const ProductItem = ({
 };
 
 ProductItem.propTypes = {
+  id: PropTypes.number.isRequired,
   info: PropTypes.object.isRequired,
   onProductDelete: PropTypes.func.isRequired,
   onOptionAdd: PropTypes.func.isRequired,
   onOptionDelete: PropTypes.func.isRequired,
   onAdditionalAdd: PropTypes.func.isRequired,
   onAdditionalDelete: PropTypes.func.isRequired,
+  onImageChange: PropTypes.func.isRequired,
 };
 
 const Wrapper = styled.article`
