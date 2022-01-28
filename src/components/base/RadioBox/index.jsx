@@ -3,7 +3,7 @@ import { COLORS } from '@utils/constants';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const RadioBox = ({id, value, checked, onChange, ...props}) => {
+const RadioBox = ({ id, value, checked, onChange }) => {
   return (
     <RadioLabel htmlFor={id}>
       <RadioInput id={id} value={value} type="radio" checked={checked} onChange={onChange}/>
