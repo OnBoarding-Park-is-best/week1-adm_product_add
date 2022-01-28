@@ -11,6 +11,7 @@ import { v4 } from 'uuid';
 
 const ProductBaseInfo = () => {
   const [categoryChecked, setCategoryChecked] = useState([]);
+  const [showFilterTagSearch, setShowFilterTagSearch] = useState(false);
 
   const checkedHandler = (e) => {
     if (e.target.checked === true) {
@@ -32,6 +33,10 @@ const ProductBaseInfo = () => {
       if (list.title === e.target.innerText) {
       }
     });
+  };
+
+  const showFilterTag = () => {
+    setShowFilterTagSearch(!showFilterTagSearch);
   };
 
   console.log('categoryChecked', categoryChecked);
@@ -65,16 +70,20 @@ const ProductBaseInfo = () => {
         </ContentItem>
         <ContentItem title={'필터 태그'}>
           <Wrap>
-            <Input height="3rem" padding="5rem" />
+            <Input onClick={showFilterTag} height="3rem" padding="5rem" />
             <BtnWrap>
-              <Button position="absolute">검색</Button>
+              <Button onClick={showFilterTag} position="absolute">
+                검색
+              </Button>
             </BtnWrap>
           </Wrap>
+
+          {showFilterTagSearch && <SearchFilterTag>true</SearchFilterTag>}
         </ContentItem>
         <ProductWrap>
           <ContentItem title={'상품명'} borderNone required>
             <Wrap>
-              <Input />
+              <Input height="3rem" />
             </Wrap>
           </ContentItem>
           <ContentItem title={'상품 코드'}>
@@ -83,7 +92,7 @@ const ProductBaseInfo = () => {
         </ProductWrap>
         <ContentItem title={'상품 구성 소개 정보'} required>
           <Wrap>
-            <Input />
+            <Input height="3rem" />
           </Wrap>
         </ContentItem>
         <ContentItem title={'상품 썸네일'}>
@@ -132,6 +141,12 @@ const BtnWrap = styled.div`
   position: absolute;
   margin-top: 5px;
   right: 1.5rem;
+`;
+
+const SearchFilterTag = styled.div`
+  margin: 1rem;
+  padding: 1rem;
+  border: ${BORDER_STYLE};
 `;
 
 export default ProductBaseInfo;
