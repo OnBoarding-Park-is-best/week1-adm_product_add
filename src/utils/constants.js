@@ -13,3 +13,9 @@ export const COLORS = {
 };
 
 export const BORDER_STYLE = `2px solid ${COLORS.border}`;
+
+export const TAX_OPTIONS = ['비과세', '과세'];
+
+export const NO_DISCOUNT = '할인율 없음';
+
+export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
