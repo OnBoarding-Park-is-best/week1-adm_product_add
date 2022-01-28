@@ -17,5 +17,5 @@ export class Option {
 
 export class Product {
   image = '';
-  options = [];
+  options = [new Option()];
 }

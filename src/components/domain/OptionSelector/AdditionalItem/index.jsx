@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Input } from '@components/base';
 
-const AdditionalItem = ({ info }) => {
+const AdditionalItem = ({ id, info, onAdditionalDelete }) => {
   const { name, normalPrice } = info;
   return (
-    <Wrapper>
+    <Wrapper className="additionalOption" data-additional-option-id={id}>
       └
       <Input name="name" value={name} placeholder="추가 옵션명 (필수)" />
       <Input
@@ -15,10 +16,17 @@ const AdditionalItem = ({ info }) => {
       />
       원
       <ButtonWrapper>
-        <Button deleteRed>삭제</Button>
+        <Button deleteRed onClick={onAdditionalDelete}>
+          삭제
+        </Button>
       </ButtonWrapper>
     </Wrapper>
   );
+};
+
+AdditionalItem.propTypes = {
+  info: PropTypes.object.isRequired,
+  onAdditionalDelete: PropTypes.func.isRequired,
 };
 
 const Wrapper = styled.div`

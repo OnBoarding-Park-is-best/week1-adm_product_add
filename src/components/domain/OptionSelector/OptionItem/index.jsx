@@ -9,9 +9,14 @@ import {
 } from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
 import { AdditionalItem } from '@components/domain';
-import { Option } from '@class';
 
-const OptionItem = ({ info }) => {
+const OptionItem = ({
+  id,
+  info,
+  onOptionDelete,
+  onAdditionalAdd,
+  onAdditionalDelete,
+}) => {
   const {
     name,
     normalPrice,
@@ -21,10 +26,13 @@ const OptionItem = ({ info }) => {
     tax,
     additionalOptions,
   } = info;
+
   return (
-    <Container>
+    <Container className="option" data-option-id={id}>
       <ButtonWrapper>
-        <Button deleteRed>삭제</Button>
+        <Button deleteRed onClick={onOptionDelete}>
+          삭제
+        </Button>
       </ButtonWrapper>
       <Input
         name="name"
@@ -56,10 +64,15 @@ const OptionItem = ({ info }) => {
         </select>
       </Wrapper>
       {additionalOptions.map((option, idx) => (
-        <AdditionalItem key={idx} info={option} />
+        <AdditionalItem
+          id={idx}
+          key={idx}
+          info={option}
+          onAdditionalDelete={onAdditionalDelete}
+        />
       ))}
       <ButtonWrapper align="flex-start">
-        <AddButton id="addOption">
+        <AddButton id="addOption" onClick={onAdditionalAdd}>
           <Icon name="ant-design:plus-outlined" height="24px" />
         </AddButton>
         <label htmlFor="addOption">추가 옵션 상품 추가</label>
@@ -69,7 +82,10 @@ const OptionItem = ({ info }) => {
 };
 
 OptionItem.propTypes = {
-  info: PropTypes.instanceOf(Option).isRequired,
+  info: PropTypes.object.isRequired,
+  onOptionDelete: PropTypes.func.isRequired,
+  onAdditionalAdd: PropTypes.func.isRequired,
+  onAdditionalDelete: PropTypes.func.isRequired,
 };
 
 const Container = styled.section`

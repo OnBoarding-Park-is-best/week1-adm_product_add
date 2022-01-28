@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
+import useOptionSelector from '@hooks/useOptionSelector';
 import { Button } from '@components/base';
 import { ProductItem } from '@components/domain';
 
-const OptionSelector = ({ state }) => {
+const OptionSelector = () => {
+  const {
+    products,
+    handleProductAdd,
+    handleProductDelete,
+    handleOptionAdd,
+    handleOptionDelete,
+    handleAdditionalAdd,
+    handleAdditionalDelete,
+  } = useOptionSelector();
   return (
     <Container>
       <ContentTitle>
         <h2>상품 옵션 *</h2>
-        <Button plusIcon>
-          {/* onClick 추가 */}
+        <Button plusIcon onClick={handleProductAdd}>
           옵션 세트 추가
         </Button>
       </ContentTitle>
       <Content>
-        {state.length ? (
+        {products.length ? (
           <>
-            {state.map((one, idx) => (
-              <ProductItem key={idx} info={one} />
+            {products.map((one, idx) => (
+              <ProductItem
+                id={idx}
+                key={idx}
+                info={one}
+                onProductDelete={handleProductDelete}
+                onOptionAdd={handleOptionAdd}
+                onOptionDelete={handleOptionDelete}
+                onAdditionalAdd={handleAdditionalAdd}
+                onAdditionalDelete={handleAdditionalDelete}
+              />
             ))}
           </>
         ) : (
@@ -51,6 +69,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5em;
   padding: 1em;
   min-height: 50vh;
   max-height: 80vh;
