@@ -1,6 +1,8 @@
 import { useState, useCallback } from 'react';
 import { deepCopy } from '@utils';
 import { Product, Option, AdditionalOption } from '@class';
+import { inputNumberFormat } from '@utils/price';
+import { FORMAT_NAME } from '../utils/constants';
 
 const getProductIdFromEvent = (e) => {
   const element = e.target.closest('.product');
@@ -116,7 +118,8 @@ const useOptionSelector = () => {
         const option = product.options[optionId];
         const copiedProduct = deepCopy(product);
         const copiedOption = deepCopy(option);
-        copiedOption.additionalOptions[additionalId][name] = value;
+        copiedOption.additionalOptions[additionalId][name] =
+          FORMAT_NAME.includes(name) ? inputNumberFormat(value) : value;
         copiedProduct.options[optionId] = copiedOption;
         return prev.map((one, idx) =>
           idx !== productId ? one : copiedProduct,
@@ -127,7 +130,9 @@ const useOptionSelector = () => {
     setProducts((prev) => {
       const product = prev[productId];
       const copiedProduct = deepCopy(product);
-      copiedProduct.options[optionId][name] = value;
+      copiedProduct.options[optionId][name] = FORMAT_NAME.includes(name)
+        ? inputNumberFormat(value)
+        : value;
       return prev.map((one, idx) => (idx !== productId ? one : copiedProduct));
     });
     return;
