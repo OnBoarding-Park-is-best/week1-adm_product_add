@@ -14,6 +14,7 @@ const ProductItem = ({
   onAdditionalAdd,
   onAdditionalDelete,
   onImageChange,
+  onInputChange,
 }) => {
   const { img, options } = info;
 
@@ -61,6 +62,7 @@ const ProductItem = ({
             onOptionDelete={onOptionDelete}
             onAdditionalAdd={onAdditionalAdd}
             onAdditionalDelete={onAdditionalDelete}
+            onInputChange={onInputChange}
           />
         ))}
         <Button plusIcon width="100%" onClick={onOptionAdd}>
@@ -80,6 +82,7 @@ ProductItem.propTypes = {
   onAdditionalAdd: PropTypes.func.isRequired,
   onAdditionalDelete: PropTypes.func.isRequired,
   onImageChange: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 const Wrapper = styled.article`

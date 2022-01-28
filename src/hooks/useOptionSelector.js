@@ -4,16 +4,19 @@ import { Product, Option, AdditionalOption } from '@class';
 
 const getProductIdFromEvent = (e) => {
   const element = e.target.closest('.product');
+  if (!element) return null;
   return Number(element.dataset.productId);
 };
 
 const getOptionIdFromEvent = (e) => {
   const element = e.target.closest('.option');
+  if (!element) return null;
   return Number(element.dataset.optionId);
 };
 
 const getAdditionalOptionIdFromEvent = (e) => {
   const element = e.target.closest('.additionalOption');
+  if (!element) return null;
   return Number(element.dataset.additionalOptionId);
 };
 
@@ -102,12 +105,33 @@ const useOptionSelector = () => {
     });
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const productId = getProductIdFromEvent(e);
     const optionId = getOptionIdFromEvent(e);
     const additionalId = getAdditionalOptionIdFromEvent(e);
-    console.log(productId, optionId, additionalId);
-  };
+    const { name, value } = e.target;
+    if (additionalId !== null) {
+      setProducts((prev) => {
+        const product = prev[productId];
+        const option = product.options[optionId];
+        const copiedProduct = deepCopy(product);
+        const copiedOption = deepCopy(option);
+        copiedOption.additionalOptions[additionalId][name] = value;
+        copiedProduct.options[optionId] = copiedOption;
+        return prev.map((one, idx) =>
+          idx !== productId ? one : copiedProduct,
+        );
+      });
+      return;
+    }
+    setProducts((prev) => {
+      const product = prev[productId];
+      const copiedProduct = deepCopy(product);
+      copiedProduct.options[optionId][name] = value;
+      return prev.map((one, idx) => (idx !== productId ? one : copiedProduct));
+    });
+    return;
+  }, []);
 
   return {
     products,

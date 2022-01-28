@@ -16,6 +16,7 @@ const OptionItem = ({
   onOptionDelete,
   onAdditionalAdd,
   onAdditionalDelete,
+  onInputChange,
 }) => {
   const {
     name,
@@ -38,12 +39,14 @@ const OptionItem = ({
         name="name"
         placeholder="옵션명을 입력해 주세요. (필수)"
         value={name}
+        onChange={onInputChange}
       />
       <Wrapper>
         <Input
           name="normalPrice"
           placeholder="상품 정상가 (필수)"
           value={normalPrice}
+          onChange={onInputChange}
         />
         <Unit>원</Unit>
         <Unit>{discount === NO_DISCOUNT ? NO_DISCOUNT : `${discount}%`}</Unit>
@@ -51,9 +54,15 @@ const OptionItem = ({
           name="sellPrice"
           placeholder="상품 판매가 (필수)"
           value={sellPrice}
+          onChange={onInputChange}
         />
         <Unit>원</Unit>
-        <Input name="stock" placeholder="재고 (필수)" value={stock} />
+        <Input
+          name="stock"
+          placeholder="재고 (필수)"
+          value={stock}
+          onChange={onInputChange}
+        />
         <Unit>개</Unit>
         <select value={tax}>
           {TAX_OPTIONS.map((one, idx) => (
@@ -69,6 +78,7 @@ const OptionItem = ({
           key={idx}
           info={option}
           onAdditionalDelete={onAdditionalDelete}
+          onInputChange={onInputChange}
         />
       ))}
       <ButtonWrapper align="flex-start">
@@ -87,6 +97,7 @@ OptionItem.propTypes = {
   onOptionDelete: PropTypes.func.isRequired,
   onAdditionalAdd: PropTypes.func.isRequired,
   onAdditionalDelete: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 const Container = styled.section`
