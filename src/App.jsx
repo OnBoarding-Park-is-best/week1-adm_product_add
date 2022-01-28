@@ -1,5 +1,11 @@
+import ProductBaseInfo from './components/domain/ProductBaseInfo';
+
 const App = () => {
-  return <div></div>
+  return (
+    <div>
+      <ProductBaseInfo />
+    </div>
+  );
 };
 
 export default App;
