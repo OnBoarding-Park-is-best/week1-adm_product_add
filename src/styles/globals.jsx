@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import scrollStyle from '@styles/scrollStyle';
 
 const GlobalStyle = createGlobalStyle`
 html,
@@ -117,6 +118,7 @@ body {
   margin: 0;
   font-family: -apple-system, Helvetica Neue, sans-serif;
   background-color: #fff;
+  ${scrollStyle}
 }
 
 a {

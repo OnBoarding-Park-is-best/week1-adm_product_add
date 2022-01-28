@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import logo from '@assets/logo.png';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
 import { Button } from '@components/base';
+import scrollStyle from '@styles/scrollStyle';
 import NavBar from './NavBar';
 import NavButton from './NavButton';
 
@@ -72,6 +73,7 @@ const MainContainer = styled.main`
   gap: 3em;
   padding: 2em 1em;
   overflow-y: auto;
+  ${scrollStyle}
 `;
 
 const borderBottom = { borderBottom: BORDER_STYLE };
