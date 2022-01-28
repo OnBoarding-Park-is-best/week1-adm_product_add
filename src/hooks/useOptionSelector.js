@@ -101,6 +101,15 @@ const useOptionSelector = () => {
     [products],
   );
 
+  const handleImageChange = (e, src) => {
+    const productId = getProductIdFromEvent(e);
+    const copiedProduct = deepCopy(products[productId]);
+    copiedProduct.img = src;
+    setProducts((products) =>
+      products.map((one, idx) => (productId !== idx ? one : copiedProduct)),
+    );
+  };
+
   return {
     products,
     handleProductAdd,
@@ -109,6 +118,7 @@ const useOptionSelector = () => {
     handleOptionDelete,
     handleAdditionalAdd,
     handleAdditionalDelete,
+    handleImageChange,
   };
 };
 
