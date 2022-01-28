@@ -8,12 +8,19 @@ import { FILTER_LIST, COLORS, BORDER_STYLE } from '@utils/constants';
 import useToggle from '@hooks/useToggle';
 
 const ProductBaseInfo = () => {
-  const [categoryChk, setCategoryChk] = useState([]);
+  const [categoryChecked, setCategoryChecked] = useState([]);
 
   const checkedHandler = (e) => {
-    console.log('e.target.checked', e.target.checked);
-    console.log('e.target.name', e.target.name);
+    if (e.target.checked === true) {
+      setCategoryChecked([...categoryChecked, e.target.name]);
+    } else if (e.target.checked === false) {
+      setCategoryChecked(
+        categoryChecked.filter((categoryChk) => categoryChk !== e.target.name),
+      );
+    }
   };
+
+  console.log('categoryChecked', categoryChecked);
 
   return (
     <div>
