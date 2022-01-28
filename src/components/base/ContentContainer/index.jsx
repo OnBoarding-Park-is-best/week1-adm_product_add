@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BORDER_STYLE } from '@utils/constants';
+import { BORDER_STYLE, FILTER_LIST } from '@utils/constants';
 
 const ContentContainer = ({ title, required, children }) => {
   return (
