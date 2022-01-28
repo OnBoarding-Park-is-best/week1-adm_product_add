@@ -19,3 +19,21 @@ export const TAX_OPTIONS = ['비과세', '과세'];
 export const NO_DISCOUNT = '할인율 없음';
 
 export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
+
+export const DELIVERY_DATA = [
+  {
+    id: 'departure',
+    title: '사용자 배송일 출발일 지정',
+    dateRequire: false,
+  },
+  {
+    id: 'receipt',
+    title: '방문 수령',
+    dateRequire: false,
+  },
+  {
+    id: 'reservation',
+    title: '선 주문 예약 배송',
+    dateRequire: true,
+  },
+];
