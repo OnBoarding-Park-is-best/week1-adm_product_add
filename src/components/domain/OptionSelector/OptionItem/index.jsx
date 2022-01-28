@@ -56,13 +56,13 @@ const OptionItem = ({
           required
         />
         <Unit>개</Unit>
-        <select value={tax} name="tax" onChange={onInputChange}>
+        <SelectBox value={tax} name="tax" onChange={onInputChange}>
           {TAX_OPTIONS.map((one, idx) => (
             <option key={idx} value={one}>
               {one}
             </option>
           ))}
-        </select>
+        </SelectBox>
       </Wrapper>
       {additionalOptions.map((option, idx) => (
         <AdditionalItem
@@ -114,6 +114,13 @@ const Unit = styled.span`
   padding-left: 0.5em;
   padding-right: 1em;
   word-break: keep-all;
+`;
+
+const SelectBox = styled.select`
+  padding: 8px 5px;
+  width: 60%;
+  border: 1px solid ${COLORS.grey_60};
+  background-color: #fff;
 `;
 
 const ButtonWrapper = styled.div`
