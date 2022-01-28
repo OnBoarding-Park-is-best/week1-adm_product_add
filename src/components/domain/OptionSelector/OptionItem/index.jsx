@@ -64,7 +64,7 @@ const OptionItem = ({
           onChange={onInputChange}
         />
         <Unit>개</Unit>
-        <select value={tax}>
+        <select value={tax} name="tax" onChange={onInputChange}>
           {TAX_OPTIONS.map((one, idx) => (
             <option key={idx} value={one}>
               {one}
