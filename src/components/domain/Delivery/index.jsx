@@ -1,7 +1,7 @@
 import React from 'react';
 import { DELIVERY_DATA } from '@utils/constants';
 import { ContentContainer, ContentItem, Toggle } from '@components/base';
-import DateInputBox from './DateInputBox';
+import DateInputContainer from './DateInputContainer';
 import styled from 'styled-components';
 import { useState } from 'react';
 
@@ -51,7 +51,7 @@ const Delivery = () => {
                 props={checkedToggles}
               />
               {item.dateRequire && (
-                <DateInputBox date={date} onChange={handleDateChange} />
+                <DateInputContainer date={date} onChange={handleDateChange} />
               )}
             </ToggleBox>
           </ContentItem>
