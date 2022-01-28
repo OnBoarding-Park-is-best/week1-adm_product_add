@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  BORDER_STYLE,
-  COLORS,
-  TAX_OPTIONS,
-  NO_DISCOUNT,
-} from '@utils/constants';
+import { BORDER_STYLE, COLORS, TAX_OPTIONS } from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
 import { AdditionalItem } from '@components/domain';
+import { calcDiscount } from '@utils/price';
 
 const OptionItem = ({
   id,
@@ -18,15 +14,7 @@ const OptionItem = ({
   onAdditionalDelete,
   onInputChange,
 }) => {
-  const {
-    name,
-    normalPrice,
-    sellPrice,
-    discount,
-    stock,
-    tax,
-    additionalOptions,
-  } = info;
+  const { name, normalPrice, sellPrice, stock, tax, additionalOptions } = info;
 
   return (
     <Container className="option" data-option-id={id}>
@@ -51,7 +39,7 @@ const OptionItem = ({
           required
         />
         <Unit>원</Unit>
-        <Unit>{discount === NO_DISCOUNT ? NO_DISCOUNT : `${discount}%`}</Unit>
+        <Unit>{calcDiscount(normalPrice, sellPrice)}</Unit>
         <Input
           name="sellPrice"
           placeholder="상품 판매가 (필수)"
