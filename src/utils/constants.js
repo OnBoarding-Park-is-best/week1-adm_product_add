@@ -23,4 +23,9 @@ export const FILTER_LIST = [
   { id: v4(), title: 'Bone' },
   { id: v4(), title: '특수' },
   { id: v4(), title: '양념' },
+  { id: v4(), title: '돼지' },
+  { id: v4(), title: '밀키트' },
+  { id: v4(), title: '선물세트' },
+  { id: v4(), title: '가니쉬' },
+  { id: v4(), title: '샤키테리' },
 ];

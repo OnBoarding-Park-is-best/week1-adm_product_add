@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ImageUploadContainer from '../ImageUploadContainer';
-import ContentContainer from '../../base/ContentContainer';
-import ContentItem from '../../base/ContentItem';
-import CheckBox from '../../base/CheckBox';
+import ImageUploadContainer from '@components/domain/ImageUploadContainer';
+import ContentContainer from '@components/base/ContentContainer';
+import ContentItem from '@components/base/ContentItem';
+import CheckBox from '@components/base/CheckBox';
 import styled from 'styled-components';
-import { FILTER_LIST, COLORS, BORDER_STYLE } from '@utils/constants';
-import useToggle from '@hooks/useToggle';
+import Button from '@components/base/Button';
+import { FILTER_LIST, BORDER_STYLE } from '@utils/constants';
 
 const ProductBaseInfo = () => {
   const [categoryChecked, setCategoryChecked] = useState([]);
@@ -32,7 +32,16 @@ const ProductBaseInfo = () => {
                 return <CheckBox onChange={checkedHandler} name={list.title} />;
               })}
             </div>
-            <aside>aa</aside>
+            <aside>
+              {categoryChecked &&
+                categoryChecked.map((chk) => {
+                  return (
+                    <Button selectCategory width="100%">
+                      {chk}
+                    </Button>
+                  );
+                })}
+            </aside>
           </CategoryWrap>
         </ContentItem>
       </ContentContainer>
@@ -45,11 +54,14 @@ const CategoryWrap = styled.article`
   display: flex;
   align-items: flex-start;
   padding: 1rem;
+  gap: 1rem;
 
   & > div {
-    flex: 1;
+    flex: 2;
     padding: 1rem;
     border: ${BORDER_STYLE};
+    overflow-y: scroll;
+    height: 15rem;
   }
 
   & > aside {
