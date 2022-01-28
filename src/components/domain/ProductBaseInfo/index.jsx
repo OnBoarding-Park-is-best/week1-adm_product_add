@@ -65,7 +65,7 @@ const ProductBaseInfo = () => {
         </ContentItem>
         <ContentItem title={'필터 태그'}>
           <Wrap>
-            <Input height="1rem" padding="1rem" />
+            <Input height="3rem" padding="5rem" />
             <BtnWrap>
               <Button position="absolute">검색</Button>
             </BtnWrap>
@@ -130,7 +130,8 @@ const ProductWrap = styled.div`
 
 const BtnWrap = styled.div`
   position: absolute;
-  right: 0;
+  margin-top: 5px;
+  right: 1.5rem;
 `;
 
 export default ProductBaseInfo;
