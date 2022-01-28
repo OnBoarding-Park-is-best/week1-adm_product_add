@@ -8,6 +8,7 @@ import {
   NO_DISCOUNT,
 } from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
+import { AdditionalItem } from '@components/domain';
 import { Option } from '../class';
 
 const OptionItem = ({ info }) => {
@@ -54,8 +55,8 @@ const OptionItem = ({ info }) => {
           ))}
         </select>
       </Wrapper>
-      {additionalOptions.map((option) => (
-        <div key={option.name}>{JSON.stringify(option)}</div>
+      {additionalOptions.map((option, idx) => (
+        <AdditionalItem key={idx} info={option} />
       ))}
       <ButtonWrapper align="flex-start">
         <AddButton id="addOption">
@@ -74,7 +75,7 @@ OptionItem.propTypes = {
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 1em;
   padding: 1em;
   background-color: #fff;
@@ -87,7 +88,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 `;
 
 const Unit = styled.span`
@@ -100,7 +100,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: ${({ align }) => align || 'flex-end'};
   align-items: center;
-  width: 100%;
 `;
 
 const AddButton = styled.button`
