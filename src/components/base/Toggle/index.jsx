@@ -1,23 +1,15 @@
 import styled from 'styled-components';
-import useToggle from '@hooks/useToggle';
 import { COLORS } from '@utils/constants';
 import PropTypes from 'prop-types';
 
-const Toggle = ({ name, on = false, onChange, ...props }) => {
-  const [checked, toggle] = useToggle(on);
-
-  const handleChange = (e) => {
-    toggle();
-    onChange && onChange();
-  };
-
+const Toggle = ({ name, checked, onChange, ...props }) => {
   return (
     <ToggleContainer {...props}>
       <ToggleInput
         type="checkbox"
-        name={name}
         checked={checked}
-        onChange={handleChange}
+        name={name}
+        onChange={onChange}
       />
       <ToggleSwitch />
     </ToggleContainer>
@@ -26,14 +18,13 @@ const Toggle = ({ name, on = false, onChange, ...props }) => {
 
 Toggle.propTypes = {
   name: PropTypes.string,
-  on: PropTypes.bool,
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 Toggle.defaultProps = {
   name: 'toggle',
-  on: false,
-  onChange: () => {},
+  checked: false,
 };
 
 const ToggleContainer = styled.label`
