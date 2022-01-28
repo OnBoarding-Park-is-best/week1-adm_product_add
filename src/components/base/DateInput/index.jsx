@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { DatePicker, DateTimePicker } from '@mui/lab/';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TextField } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function DateInput({ today, date, withTime, onChange }) {
   const DateName = withTime ? DateTimePicker : DatePicker;
@@ -26,5 +27,11 @@ function DateInput({ today, date, withTime, onChange }) {
     </LocalizationProvider>
   );
 }
+
+DateInput.propTypes = {
+  today: PropTypes.bool,
+  withTime: PropTypes.bool,
+  date: PropTypes.object,
+};
 
 export default DateInput;
