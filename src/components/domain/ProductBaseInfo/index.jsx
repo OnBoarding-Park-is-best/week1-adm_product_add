@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ImageUploadContainer from '@components/domain/ImageUploadContainer';
 import ContentContainer from '@components/base/ContentContainer';
 import ContentItem from '@components/base/ContentItem';
@@ -7,14 +7,23 @@ import styled from 'styled-components';
 import Button from '@components/base/Button';
 import Input from '@components/base/Input';
 import FilterTags from '@components/domain/ProductBaseInfo/FIlterTag';
+import SelectedTags from '@components/domain/ProductBaseInfo/SelectedTags';
 import { FILTER_LIST, BORDER_STYLE, FILTER_TAGS } from '@utils/constants';
 import { v4 } from 'uuid';
 
 const ProductBaseInfo = () => {
   const [categoryChecked, setCategoryChecked] = useState([]);
   const [showFilterTagSearch, setShowFilterTagSearch] = useState(false);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [searchTag, setSearchTag] = useState('');
-  console.log('searchTag', searchTag);
+
+  const filteredTags = FILTER_TAGS.filter((tag) => {
+    if (searchTag == '') {
+      return tag;
+    } else if (tag.title.toLowerCase().includes(searchTag.toLowerCase())) {
+      return tag;
+    }
+  });
 
   const checkedHandler = (e) => {
     if (e.target.checked === true) {
@@ -38,17 +47,23 @@ const ProductBaseInfo = () => {
     });
   };
 
-  const showFilterTag = () => {
-    setShowFilterTagSearch(!showFilterTagSearch);
+  const showFilterTag = (e) => {
+    setShowFilterTagSearch(true);
   };
 
-  const filteredTags = FILTER_TAGS.filter((tag) => {
-    if (searchTag == '') {
-      return tag;
-    } else if (tag.title.toLowerCase().includes(searchTag.toLowerCase())) {
-      return tag;
-    }
-  });
+  const hideFilterTag = (e) => {
+    setShowFilterTagSearch(false);
+  };
+
+  const handleSelectedTags = (e) => {
+    if (!selectedTags.includes(e.target.innerText))
+      setSelectedTags([...selectedTags, e.target.innerText]);
+  };
+
+  const removeSelectedTag = (e) => {
+    const targetText = e.target.closest('button').innerText;
+    setSelectedTags((prev) => prev.filter((tag) => tag !== targetText));
+  };
 
   return (
     <>
@@ -57,18 +72,25 @@ const ProductBaseInfo = () => {
           <Wrap>
             <CategorySelect>
               {FILTER_LIST.map((list) => {
-                return <CheckBox onChange={checkedHandler} name={list.title} />;
+                return (
+                  <CheckBox
+                    onChange={checkedHandler}
+                    name={list.title}
+                    key={list.id}
+                  />
+                );
               })}
             </CategorySelect>
             <CategoryBtn>
               {categoryChecked &&
-                categoryChecked.map((chk) => {
+                categoryChecked.map((chk, idx) => {
                   return (
                     <Button
                       onClick={removeFilter}
                       selectCategory
                       deleteIcon
                       width="100%"
+                      key={idx}
                     >
                       {chk}
                     </Button>
@@ -77,11 +99,12 @@ const ProductBaseInfo = () => {
             </CategoryBtn>
           </Wrap>
         </ContentItem>
-        <ContentItem title={'필터 태그'}>
+        <ContentItem title={'필터 태그'} onBlur={hideFilterTag} tabIndex="0">
           <Wrap>
             <Input
               placeholder="필터태그를 검색해 주세요."
-              onClick={showFilterTag}
+              onFocus={showFilterTag}
+              // onBlur={hideFilterTag}
               onChange={(e) => {
                 setSearchTag(e.target.value);
               }}
@@ -89,13 +112,26 @@ const ProductBaseInfo = () => {
               padding="5rem"
             />
             <BtnWrap>
-              <Button onClick={showFilterTag} position="absolute">
+              <Button
+                onClick={showFilterTag}
+                onBlur={hideFilterTag}
+                position="absolute"
+              >
                 검색
               </Button>
             </BtnWrap>
           </Wrap>
           {showFilterTagSearch && (
-            <FilterTags searchTag={searchTag} tagList={filteredTags} />
+            <FilterTags
+              tagList={filteredTags}
+              handleSelectedTags={handleSelectedTags}
+            />
+          )}
+          {selectedTags.length > 0 && (
+            <SelectedTags
+              selectedTags={selectedTags}
+              removeSelectedTag={removeSelectedTag}
+            />
           )}
         </ContentItem>
         <ProductWrap>

@@ -1,17 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '@components/base/Button';
-
 import { BORDER_STYLE } from '@utils/constants';
 
-const FilterTags = ({ searchTag, tagList }) => {
+const FilterTags = ({ tagList, handleSelectedTags }) => {
   return (
     <Container>
       {tagList ? (
         <FilterTagWrap>
-          {tagList.map((tag) => {
-            return <Button filterCategory> {tag.title}</Button>;
-          })}
+          {tagList.length === 0 ? (
+            <Wrapper>검색 결과가 존재하지 않습니다.</Wrapper>
+          ) : (
+            tagList.map((tag, idx) => {
+              return (
+                <Button onClick={handleSelectedTags} key={idx} filterCategory>
+                  {tag.title}
+                </Button>
+              );
+            })
+          )}
         </FilterTagWrap>
       ) : (
         <div>필터 테그를 추가해주세요.</div>
@@ -32,6 +39,14 @@ const FilterTagWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 3rem;
 `;
 
 export default FilterTags;
