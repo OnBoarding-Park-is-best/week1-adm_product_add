@@ -18,11 +18,12 @@ const ProductBaseInfo = () => {
   const [searchTag, setSearchTag] = useState('');
 
   const filteredTags = FILTER_TAGS.filter((tag) => {
-    if (searchTag == '') {
+    if (searchTag === '') {
       return tag;
     } else if (tag.title.toLowerCase().includes(searchTag.toLowerCase())) {
       return tag;
     }
+    return '';
   });
 
   const checkedHandler = (e) => {
@@ -41,10 +42,6 @@ const ProductBaseInfo = () => {
         (categoryChk) => categoryChk !== e.target.innerText,
       ),
     );
-    FILTER_LIST.filter((list) => {
-      if (list.title === e.target.innerText) {
-      }
-    });
   };
 
   const showFilterTag = (e) => {
@@ -75,6 +72,7 @@ const ProductBaseInfo = () => {
                 return (
                   <CheckBox
                     onChange={checkedHandler}
+                    checked={categoryChecked.includes(list.title)}
                     name={list.title}
                     key={list.id}
                   />
@@ -99,7 +97,7 @@ const ProductBaseInfo = () => {
             </CategoryBtn>
           </Wrap>
         </ContentItem>
-        <ContentItem title={'필터 태그'} onBlur={hideFilterTag} tabIndex="0">
+        <ContentItem title={'필터 태그'} tabIndex="0">
           <FilterTagWrap>
             <Input
               placeholder="필터태그를 검색해 주세요."

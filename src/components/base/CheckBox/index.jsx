@@ -1,27 +1,19 @@
-import useToggle from '@hooks/useToggle';
 import { COLORS } from '@utils/constants';
 import { Icon } from '@components/base';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const CheckBox = ({ id, name, onChange, ...props }) => {
-  const [isChecked, toggle] = useToggle(false);
-
-  const checkHandler = (e) => {
-    toggle();
-    onChange && onChange(e);
-  };
-
+const CheckBox = ({ id, name, checked, onChange, ...props }) => {
   return (
     <CheckBoxLabel htmlFor={id}>
       <CheckBoxInput
         id={id}
         type="checkbox"
-        checked={isChecked}
-        onChange={checkHandler}
+        checked={checked}
+        onChange={onChange}
         name={name}
       />
-      <StyledCheckBox checked={isChecked}>
+      <StyledCheckBox checked={checked}>
         <Icon
           icon="akar-icons:check"
           color="#fff"
@@ -53,7 +45,7 @@ const CheckBoxInput = styled.input`
   padding: 0;
   border: 0;
   clip: rect(0 0 0 0);
-  clippath: inset(50%);
+  clip-path: inset(50%);
   overflow: hidden;
   white-space: nowrap;
 `;
@@ -70,7 +62,7 @@ const StyledCheckBox = styled.div`
 `;
 
 const iconStyle = ({ isActive }) => ({
-  visibility: isActive ? 'visiblie' : 'hidden',
+  visibility: isActive ? 'visible' : 'hidden',
 });
 
 export default CheckBox;
