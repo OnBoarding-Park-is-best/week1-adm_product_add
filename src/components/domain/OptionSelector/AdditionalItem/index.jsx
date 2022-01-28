@@ -13,12 +13,14 @@ const AdditionalItem = ({ id, info, onAdditionalDelete, onInputChange }) => {
         value={name}
         onChange={onInputChange}
         placeholder="추가 옵션명 (필수)"
+        required
       />
       <Input
         name="normalPrice"
         value={normalPrice}
         onChange={onInputChange}
         placeholder="추가 옵션 정상가 (필수)"
+        required
       />
       원
       <ButtonWrapper>

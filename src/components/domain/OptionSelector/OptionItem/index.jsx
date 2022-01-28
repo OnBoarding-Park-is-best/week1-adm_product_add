@@ -40,6 +40,7 @@ const OptionItem = ({
         placeholder="옵션명을 입력해 주세요. (필수)"
         value={name}
         onChange={onInputChange}
+        required
       />
       <Wrapper>
         <Input
@@ -47,6 +48,7 @@ const OptionItem = ({
           placeholder="상품 정상가 (필수)"
           value={normalPrice}
           onChange={onInputChange}
+          required
         />
         <Unit>원</Unit>
         <Unit>{discount === NO_DISCOUNT ? NO_DISCOUNT : `${discount}%`}</Unit>
@@ -55,6 +57,7 @@ const OptionItem = ({
           placeholder="상품 판매가 (필수)"
           value={sellPrice}
           onChange={onInputChange}
+          required
         />
         <Unit>원</Unit>
         <Input
@@ -62,6 +65,7 @@ const OptionItem = ({
           placeholder="재고 (필수)"
           value={stock}
           onChange={onInputChange}
+          required
         />
         <Unit>개</Unit>
         <select value={tax} name="tax" onChange={onInputChange}>
