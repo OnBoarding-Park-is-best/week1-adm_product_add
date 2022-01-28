@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
 import { Button } from '@components/base';
+import scrollStyle from '@styles/scrollStyle';
 import ProductItem from './ProductItem';
 
 const OptionSelector = ({
@@ -76,15 +77,7 @@ const Content = styled.div`
   min-height: 50vh;
   max-height: 80vh;
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 0.5em;
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${COLORS.grey};
-    border-radius: 5px;
-  }
+  ${scrollStyle}
 `;
 
 const Placeholder = styled.div`

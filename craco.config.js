@@ -11,6 +11,7 @@ module.exports = {
       '@api': path.resolve(__dirname, 'src/api'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@styles': path.resolve(__dirname, 'src/styles'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
     },
   },
   jest: {
@@ -23,6 +24,7 @@ module.exports = {
         '^\\@api/(.*)$': '<rootDir>/src/api/$1',
         '^\\@utils/(.*)$': '<rootDir>/src/utils/$1',
         '^\\@styles/(.*)$': '<rootDir>/src/styles/$1',
+        '^\\@assets/(.*)$': '<rootDir>/src/assets/$1',
       },
     },
   },
