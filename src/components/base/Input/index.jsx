@@ -50,7 +50,6 @@ Input.defaultProps = {
 
 const StyledInput = styled.input`
   display: block;
-  position: relative;
   width: 100%;
   height: ${({ height }) => height};
   box-sizing: border-box;

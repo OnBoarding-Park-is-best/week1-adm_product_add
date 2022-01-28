@@ -14,7 +14,7 @@ const Button = ({
   ...props
 }) => {
   return (
-    <CustomBtn width={width} {...props}>
+    <CustomBtn type="button" width={width} {...props}>
       {plusIcon && <Icon name="ant-design:plus-outlined" height="0.8rem" />}
       {children}
       {deleteIcon && <Icon name="bi:x" height="1rem" />}
