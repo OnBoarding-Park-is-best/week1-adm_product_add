@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BORDER_STYLE, COLORS } from '@utils/constants';
 import { Button } from '@components/base';
 import { OptionItem } from '@components/domain';
-import { Product } from '../class';
+import { Product } from '@class';
 
 const ProductItem = ({ info }) => {
   const { img, options } = info;

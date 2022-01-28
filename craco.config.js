@@ -4,6 +4,7 @@ module.exports = {
   webpack: {
     // 절대경로 지정
     alias: {
+      '@class': path.resolve(__dirname, 'src/class'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
@@ -15,6 +16,7 @@ module.exports = {
   jest: {
     configure: {
       moduleNameMapper: {
+        '^\\@class/(.*)$': '<rootDir>/src/class/$1',
         '^\\@components/(.*)$': '<rootDir>/src/components/$1',
         '^\\@hooks/(.*)$': '<rootDir>/src/hooks/$1',
         '^\\@pages/(.*)$': '<rootDir>/src/pages/$1',

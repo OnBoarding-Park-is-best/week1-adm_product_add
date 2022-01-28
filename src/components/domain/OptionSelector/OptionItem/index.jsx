@@ -9,7 +9,7 @@ import {
 } from '@utils/constants';
 import { Button, Input, Icon } from '@components/base';
 import { AdditionalItem } from '@components/domain';
-import { Option } from '../class';
+import { Option } from '@class';
 
 const OptionItem = ({ info }) => {
   const {
