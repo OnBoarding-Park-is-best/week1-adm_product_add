@@ -8,7 +8,6 @@ import { v4 } from 'uuid';
 const ImageUploadContainer = ({ multiple }) => {
   const [images, setImages] = useState([]);
 
-  console.log(images);
   const handleUpload = (e) => {
     const imagelist = [...e.target.files];
     imagelist.map((image) => {
