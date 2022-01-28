@@ -53,7 +53,7 @@ const ProductInformationNotice = ({ infoIndex, ...props }) => {
           padding="13px 8px"
           value={title}
           onChange={(e) => handleUpdateItem(id, 'title', e)}
-          style={{ width: 258 }}
+          style={{ width: 200, minWidth: 200 }}
         />
         <Input
           name={content}
@@ -116,7 +116,7 @@ const TitleContainer = styled.div`
 
 const Text = styled.div`
   font-size: ${({ componentTitle }) => (componentTitle ? '18px' : '16px')};
-  width: 240px;
+  min-width: 200px;
   font-weight: ${({ componentTitle }) => (componentTitle ? 600 : 400)};
 `;
 
@@ -124,10 +124,12 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 18px;
+  gap: 18px;
 `;
 
 const ItemContainer = styled.div`
   display: flex;
+  flex: 1;
   align-items: center;
   gap: 18px;
   height: 62px;
