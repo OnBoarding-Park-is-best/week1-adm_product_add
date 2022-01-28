@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-const Upload = ({ children, onChange, name, ...props }) => {
+const Upload = ({ children, name, multiple, onChange, ...props }) => {
   const uploadInputRef = useRef(null);
 
   const handleUploadImage = () => {
@@ -14,6 +15,7 @@ const Upload = ({ children, onChange, name, ...props }) => {
         type="file"
         name={name}
         accept="image/jpg, image/jpeg, image/png"
+        multiple={multiple}
         ref={uploadInputRef}
         onChange={onChange}
       />
@@ -35,5 +37,18 @@ const Input = styled.input`
 const Button = styled.button`
   all: unset;
 `;
+
+Upload.propTypes = {
+  children: PropTypes.node.isRequired,
+  name: PropTypes.string,
+  multiple: PropTypes.bool,
+  onChange: PropTypes.func,
+};
+
+Upload.defaultProps = {
+  name: 'upload',
+  multiple: false,
+  onChange: () => {},
+};
 
 export default Upload;
