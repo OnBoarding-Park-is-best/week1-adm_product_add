@@ -8,7 +8,7 @@ const IconComponent = ({ name, color, height, ...props }) => {
 IconComponent.propTypes = {
   name: PropTypes.string,
   color: PropTypes.string,
-  height: PropTypes.number,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 IconComponent.defaultProps = {
