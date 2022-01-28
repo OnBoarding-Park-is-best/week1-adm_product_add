@@ -5,7 +5,14 @@ import { COLORS } from '@utils/constants';
 import buttonStyle from '@styles/buttonStyle';
 import { Icon } from '@components/base';
 
-const Button = ({ children, plusIcon, deleteIcon, width, ...props }) => {
+const Button = ({
+  children,
+  plusIcon,
+  deleteIcon,
+  position,
+  width,
+  ...props
+}) => {
   return (
     <CustomBtn width={width} {...props}>
       {plusIcon && <Icon name="ant-design:plus-outlined" height="0.8rem" />}

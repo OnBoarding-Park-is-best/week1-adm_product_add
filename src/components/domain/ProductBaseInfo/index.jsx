@@ -100,7 +100,7 @@ const ProductBaseInfo = () => {
           </Wrap>
         </ContentItem>
         <ContentItem title={'필터 태그'} onBlur={hideFilterTag} tabIndex="0">
-          <Wrap>
+          <FilterTagWrap>
             <Input
               placeholder="필터태그를 검색해 주세요."
               onFocus={showFilterTag}
@@ -116,12 +116,12 @@ const ProductBaseInfo = () => {
               <Button
                 onClick={showFilterTag}
                 onBlur={hideFilterTag}
-                position="absolute"
+                // position="absolute"
               >
                 검색
               </Button>
             </BtnWrap>
-          </Wrap>
+          </FilterTagWrap>
           {showFilterTagSearch && (
             <FilterTags
               tagList={filteredTags}
@@ -200,6 +200,12 @@ const BtnWrap = styled.div`
   position: absolute;
   margin-top: 5px;
   right: 1.5rem;
+`;
+
+const FilterTagWrap = styled.article`
+  display: flex;
+  padding: 1rem;
+  position: relative;
 `;
 
 export default ProductBaseInfo;

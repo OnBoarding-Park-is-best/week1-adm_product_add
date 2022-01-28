@@ -43,3 +43,52 @@ export const FILTER_TAGS = [
   { id: v4(), title: '가니쉬' },
   { id: v4(), title: '샤키테리' },
 ];
+
+export const TAX_OPTIONS = ['비과세', '과세'];
+
+export const NO_DISCOUNT = '할인율 없음';
+
+export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
+
+export const NAV_BAR_CONTENT = [
+  {
+    title: '회원',
+  },
+  {
+    title: '진열',
+  },
+  {
+    title: '상품',
+  },
+  {
+    title: '상품 리스트',
+    href: '/',
+  },
+  {
+    title: '상품 재고 관리',
+    href: '/',
+  },
+  {
+    title: '상품 등록',
+    href: '/',
+    current: true,
+  },
+  {
+    title: '주문',
+  },
+  {
+    title: '배송',
+  },
+  {
+    title: '프로모션',
+  },
+  {
+    title: '혜택',
+  },
+  {
+    title: '고객 센터 관리',
+  },
+  {
+    title: '알림',
+  },
+];
