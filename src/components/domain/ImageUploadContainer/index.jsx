@@ -46,9 +46,7 @@ const ImageUploadContainer = ({ multiple }) => {
   return (
     <Container>
       <Upload onChange={handleUpload} name="imageUpload" multiple={multiple}>
-        <Button width="164px" plusIcon>
-          이미지 첨부
-        </Button>
+        이미지 첨부
       </Upload>
       <FileNameListContainer>{handleFileName(images)}</FileNameListContainer>
     </Container>
