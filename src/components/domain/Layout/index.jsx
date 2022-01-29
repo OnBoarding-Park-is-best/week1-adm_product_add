@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
       </div>
       <SaveContainer style={{ ...borderBottom }}>
         <Title>상품 등록</Title>
-        <Button confirm form="register">
+        <Button type="submit" confirm form="register">
           저장하기
         </Button>
       </SaveContainer>
