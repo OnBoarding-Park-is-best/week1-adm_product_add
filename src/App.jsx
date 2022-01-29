@@ -1,33 +1,110 @@
-import React, { useCallback } from 'react';
-import { Layout, OptionSelector } from '@components/domain';
-import useOptionSelector from '@hooks/useOptionSelector';
-import { Period, Delivery } from '@components/domain';
+import React from 'react';
+import styled from 'styled-components';
+import { ContentContainer, ContentItem, Button } from '@components/base';
+import {
+  Period,
+  Layout,
+  OptionSelector,
+  Delivery,
+  Benefit,
+  Others,
+  ProductBaseInfo,
+  ImageUploadSection,
+  ProductInformationNotice,
+} from '@components/domain';
+import scrollStyle from '@styles/scrollStyle';
+import useApp from '@hooks/useApp';
 
 const App = () => {
-  const optionSelector = useOptionSelector();
-  const { products } = optionSelector;
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (products.length === 0) {
-        alert('상품 옵션을 하나 이상 등록하셔야 합니다.');
-        return;
-      }
-      console.log('saved!');
-      console.log(products);
-    },
-    [products],
-  );
+  const {
+    appState,
+    isModalOn,
+    toggleModal,
+    optionSelector,
+    isBenefit,
+    isPresent,
+    handleOthersChange,
+    handleSubmit,
+  } = useApp();
 
   return (
     <Layout>
-      <form id="register" onSubmit={handleSubmit}>
+      <Form id="register" onSubmit={handleSubmit}>
         <Period />
-        <Delivery />
+        <ProductBaseInfo />
         <OptionSelector {...optionSelector} />
-      </form>
+        <ImageUploadSection title="상품 소개 이미지" multiple />
+        <ImageUploadSection title="구매자 추천 이미지" multiple />
+        <ProductInformationNotice />
+        <Delivery />
+        <Benefit checked={isBenefit} onChange={handleOthersChange} />
+        <Others checked={isPresent} onChange={handleOthersChange} />
+      </Form>
+      <BackDrop
+        className="modal-toggle"
+        showing={isModalOn}
+        onClick={toggleModal}
+      >
+        <Modal>
+          <ContentContainer title="저장 결과">
+            {Object.entries(appState).map(([key, value]) => (
+              <ContentItem title={key} key={key}>
+                <Wrapper>{JSON.stringify(value)}</Wrapper>
+              </ContentItem>
+            ))}
+          </ContentContainer>
+          <Button className="modal-toggle" confirm>
+            확인
+          </Button>
+        </Modal>
+      </BackDrop>
     </Layout>
   );
 };
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 3em;
+`;
+
+const BackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: ${({ showing }) => (showing ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+const Modal = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  width: 50%;
+  min-height: 50%;
+  max-height: 80%;
+  z-index: 1001;
+  padding: 3em 1em;
+  border-radius: 0.5em;
+  background-color: #fff;
+  overflow-y: auto;
+  ${scrollStyle}
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em;
+`;
 
 export default App;

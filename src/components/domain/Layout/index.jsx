@@ -66,11 +66,6 @@ const ImageContainer = styled.a`
 `;
 
 const MainContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 3em;
   padding: 2em 1em;
   overflow-y: auto;
   ${scrollStyle}

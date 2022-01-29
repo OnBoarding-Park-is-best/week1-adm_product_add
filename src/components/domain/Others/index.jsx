@@ -3,12 +3,12 @@ import { ContentItem } from '@components/base';
 import { Toggle } from '@components/base';
 import styled from 'styled-components';
 
-const Others = () => {
+const Others = ({ checked, onChange }) => {
   return (
     <ContentContainer title="기타 설정">
       <ContentItem title="감사카드 제공">
         <StyledToggle>
-          <Toggle />
+          <Toggle name="present" checked={checked} onChange={onChange} />
         </StyledToggle>
       </ContentItem>
     </ContentContainer>

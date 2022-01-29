@@ -17,6 +17,11 @@ const Delivery = () => {
   const [selectedDate, setSelectedDate] = useState({});
   const [checkedToggles, setCheckedToggles] = useState([]);
   const [isWarning, setWarning] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  const closeAlert = () => {
+    setVisible(false);
+  };
 
   const handleDateChange = (name, date) => {
     setDate((prev) => ({
@@ -64,11 +69,6 @@ const Delivery = () => {
       return;
     }
     setCheckedToggles((prev) => ({ ...prev, [name]: false }));
-  };
-
-  const [visible, setVisible] = useState(true);
-  const closeAlert = () => {
-    setVisible(false);
   };
 
   return (

@@ -42,7 +42,7 @@ Input.propTypes = {
 Input.defaultProps = {
   onChange: () => {},
   padding: '8px',
-  height: '1rem',
+  height: '3rem',
   error: false,
   success: false,
   style: {},

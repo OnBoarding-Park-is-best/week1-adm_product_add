@@ -5,19 +5,29 @@ import { BORDER_STYLE } from '@utils/constants';
 
 const FilterTags = ({ hideFilterTag, tagList, handleSelectedTags }) => {
   return (
-    <Container onBlur={hideFilterTag}>
+    <Container>
       {tagList ? (
         <FilterTagWrap>
           {tagList.length === 0 ? (
-            <Wrapper>검색 결과가 존재하지 않습니다.</Wrapper>
+            <>
+              <Wrapper>검색 결과가 존재하지 않습니다.</Wrapper>
+              <Button onClick={hideFilterTag} cancel>
+                닫기
+              </Button>
+            </>
           ) : (
-            tagList.map((tag, idx) => {
-              return (
-                <Button onClick={handleSelectedTags} key={idx} filterCategory>
-                  {tag.title}
-                </Button>
-              );
-            })
+            <>
+              {tagList.map((tag, idx) => {
+                return (
+                  <Button onClick={handleSelectedTags} key={idx} filterCategory>
+                    {tag.title}
+                  </Button>
+                );
+              })}
+              <Button onClick={hideFilterTag} cancel>
+                닫기
+              </Button>
+            </>
           )}
         </FilterTagWrap>
       ) : (
