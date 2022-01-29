@@ -4,7 +4,7 @@ import { COLORS } from '@utils/constants';
 import { forwardRef } from 'react';
 
 const Input = forwardRef(
-  ({ onChange, name, padding, error, success, ...props }, ref) => {
+  ({ onChange, name, height, padding, error, success, ...props }, ref) => {
     let status = '';
 
     if (error) {
@@ -20,6 +20,7 @@ const Input = forwardRef(
         name={name}
         className={status || undefined}
         padding={padding}
+        height={height}
         {...props}
         style={{ ...props.style }}
         ref={ref}
@@ -32,6 +33,7 @@ Input.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
   padding: PropTypes.string,
+  height: PropTypes.string,
   error: PropTypes.bool,
   success: PropTypes.bool,
   style: PropTypes.object,
@@ -40,6 +42,7 @@ Input.propTypes = {
 Input.defaultProps = {
   onChange: () => {},
   padding: '8px',
+  height: '1rem',
   error: false,
   success: false,
   style: {},
@@ -47,13 +50,13 @@ Input.defaultProps = {
 
 const StyledInput = styled.input`
   display: block;
-  position: relative;
   width: 100%;
+  height: ${({ height }) => height};
   box-sizing: border-box;
   border: 1px solid ${COLORS.border};
   background-color: transparent;
   outline: none;
-  padding: ${({ padding }) => padding};
+  padding: 8px ${({ padding }) => padding} 8px 8px;
 
   &::placeholder {
     color: ${COLORS.grey};

@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 export const COLORS = {
   purple_90: '#3f1c6f', // 저장하기 뒷배경 및 보더 컬러
   purple_50: '#2a19bc', // 토글 컬러
@@ -34,5 +36,82 @@ export const INFORMATION_NOTICE_CONTENT_LIST = [
   {
     title: '식품 유형',
     placeholder: '식품 유형을 입력해 주세요.(ex) 포장육',
+  },
+];
+
+export const FILTER_LIST = [
+  { id: v4(), title: '안심' },
+  { id: v4(), title: '등심' },
+  { id: v4(), title: '채끝' },
+  { id: v4(), title: 'Bone' },
+  { id: v4(), title: '특수' },
+  { id: v4(), title: '양념' },
+  { id: v4(), title: '돼지' },
+  { id: v4(), title: '밀키트' },
+  { id: v4(), title: '선물세트' },
+  { id: v4(), title: '가니쉬' },
+  { id: v4(), title: '샤키테리' },
+];
+
+export const FILTER_TAGS = [
+  { id: v4(), title: '안심' },
+  { id: v4(), title: '등심' },
+  { id: v4(), title: '채끝' },
+  { id: v4(), title: 'Bone' },
+  { id: v4(), title: '특수' },
+  { id: v4(), title: '양념' },
+  { id: v4(), title: '돼지' },
+  { id: v4(), title: '밀키트' },
+  { id: v4(), title: '선물세트' },
+  { id: v4(), title: '가니쉬' },
+  { id: v4(), title: '샤키테리' },
+];
+
+export const TAX_OPTIONS = ['비과세', '과세'];
+
+export const NO_DISCOUNT = '할인율 없음';
+
+export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
+
+export const NAV_BAR_CONTENT = [
+  {
+    title: '회원',
+  },
+  {
+    title: '진열',
+  },
+  {
+    title: '상품',
+  },
+  {
+    title: '상품 리스트',
+    href: '/',
+  },
+  {
+    title: '상품 재고 관리',
+    href: '/',
+  },
+  {
+    title: '상품 등록',
+    href: '/',
+    current: true,
+  },
+  {
+    title: '주문',
+  },
+  {
+    title: '배송',
+  },
+  {
+    title: '프로모션',
+  },
+  {
+    title: '혜택',
+  },
+  {
+    title: '고객 센터 관리',
+  },
+  {
+    title: '알림',
   },
 ];
