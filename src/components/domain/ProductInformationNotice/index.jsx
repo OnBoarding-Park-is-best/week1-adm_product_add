@@ -1,138 +1,73 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Button, Input } from '@components/base';
-import { COLORS, INFORMATION_NOTICE_CONTENT_LIST } from '@utils/constants';
+import { useState } from 'react';
 import { v4 } from 'uuid';
-import PropTypes from 'prop-types';
+import { ContentContainer, Button } from '@components/base';
+import InformationContentContainer from './InformationContentContainer';
+import styled from 'styled-components';
+import { COLORS } from '@utils/constants';
 
-const ProductInformationNotice = ({ infoIndex, ...props }) => {
-  const [additionalContent, setAdditionalContent] = useState([]);
+const ProductInformationNotice = () => {
+  const [contentList, setContentList] = useState([
+    {
+      id: v4(),
+      contentIndex: 1,
+    },
+  ]);
 
-  const handleAddItem = () => {
-    setAdditionalContent((content) => [
-      ...content,
+  const handleAddContentList = () =>
+    setContentList((contentList) => [
+      ...contentList,
       {
         id: v4(),
-        title: '',
-        content: '',
+        contentIndex: !contentList.length
+          ? 1
+          : contentList[contentList.length - 1].contentIndex + 1,
       },
     ]);
-  };
 
-  const handleUpdateItem = (id, status, e) =>
-    status === 'title'
-      ? setAdditionalContent(
-          additionalContent.map((item) =>
-            item.id === id ? { ...item, title: e.target.value } : item,
-          ),
-        )
-      : setAdditionalContent(
-          additionalContent.map((item) =>
-            item.id === id ? { ...item, content: e.target.value } : item,
-          ),
-        );
+  const handleDlelteContentList = (id) =>
+    setContentList(contentList.filter((item) => item.id !== id));
 
-  const handleDeleteItem = (id) => {
-    setAdditionalContent(additionalContent.filter((item) => id !== item.id));
-  };
-
-  const handleInformationContent = (list) =>
-    list.map(({ title, placeholder }, infoIndex) => (
-      <ItemContainer key={infoIndex}>
-        <Text>{title}</Text>
-        <Input name={title} placeholder={placeholder} padding="13px 8px" />
-      </ItemContainer>
-    ));
-
-  const handleAdditionalInformationContent = (list) =>
-    list.map(({ id, title, content }, index) => (
-      <ItemContainer key={index} id={id}>
-        <Input
-          name={title}
-          placeholder="항목 제목 자유 입력"
-          padding="13px 8px"
-          value={title}
-          onChange={(e) => handleUpdateItem(id, 'title', e)}
-          style={{ width: 200, minWidth: 200 }}
-        />
-        <Input
-          name={content}
-          placeholder="내용을 입력해주세요."
-          padding="13px 8px"
-          value={content}
-          onChange={(e) => handleUpdateItem(id, 'content', e)}
-        />
+  const handleInformationContentList = (list) =>
+    list.map(({ id, contentIndex }, index) => (
+      <InnerItemContainer key={index}>
+        <InformationContentContainer infoIndex={contentIndex} id={id} />
         <Button
-          deleteRed
-          width="120px"
-          style={{ height: 42 }}
-          onClick={() => handleDeleteItem(id)}
+          deleteGrey
+          onClick={() => handleDlelteContentList(id)}
+          style={{ position: 'absolute', right: 48, top: 24 }}
         >
           삭제
         </Button>
-      </ItemContainer>
+      </InnerItemContainer>
     ));
 
   return (
-    <ProductInformationNoticeContainer {...props}>
-      <TitleContainer>
-        <Text componentTitle>정보고시 {infoIndex}</Text>
-        <Button deleteGrey>삭제</Button>
-      </TitleContainer>
-      <ContentContainer>
-        {handleInformationContent(INFORMATION_NOTICE_CONTENT_LIST)}
-        {handleAdditionalInformationContent(additionalContent)}
-      </ContentContainer>
-      <Button plusIcon onClick={() => handleAddItem()}>
-        항목 추가
-      </Button>
-    </ProductInformationNoticeContainer>
+    <ContentContainer title="상품 정보 고시">
+      <InnerContentContainer>
+        {handleInformationContentList(contentList)}
+        <Button
+          plusIcon
+          width="100%"
+          onClick={() => handleAddContentList()}
+          style={{ backgroundColor: 'inherit' }}
+        >
+          정보고시 추가
+        </Button>
+      </InnerContentContainer>
+    </ContentContainer>
   );
 };
 
-ProductInformationNotice.propTypes = {
-  infoIndex: PropTypes.number,
-};
-
-ProductInformationNotice.defaultProps = {
-  infoIndex: 1,
-};
-
-const ProductInformationNoticeContainer = styled.div`
-  padding: 32px;
-  border: 1px solid ${COLORS.border};
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-bottom: 18px;
-  > Button {
-    position: absolute;
-    right: 0;
-  }
-`;
-
-const Text = styled.div`
-  font-size: ${({ componentTitle }) => (componentTitle ? '18px' : '16px')};
-  min-width: 200px;
-  font-weight: ${({ componentTitle }) => (componentTitle ? 600 : 400)};
-`;
-
-const ContentContainer = styled.div`
+const InnerContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 18px;
-  gap: 18px;
+  padding: 32px;
+  background-color: ${COLORS.grey_60};
+  gap: 32px;
 `;
 
-const ItemContainer = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  gap: 18px;
-  height: 62px;
+const InnerItemContainer = styled.div`
+  position: relative;
 `;
 
 export default ProductInformationNotice;
