@@ -73,6 +73,8 @@ export const NO_DISCOUNT = '할인율 없음';
 
 export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
 
+export const PERIOD_NAME = ['제한없음', '미노출', '노출 기간 설정'];
+
 export const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
 
 export const DATE_NAME = {
