@@ -2,11 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { ContentContainer, ContentItem, Button } from '@components/base';
 import {
+  Period,
   Layout,
   OptionSelector,
+  Delivery,
   Benefit,
   Others,
   ProductBaseInfo,
+  ImageUploadSection,
+  ProductInformationNotice,
 } from '@components/domain';
 import scrollStyle from '@styles/scrollStyle';
 import useApp from '@hooks/useApp';
@@ -26,8 +30,13 @@ const App = () => {
   return (
     <Layout>
       <Form id="register" onSubmit={handleSubmit}>
+        <Period />
         <ProductBaseInfo />
         <OptionSelector {...optionSelector} />
+        <ImageUploadSection title="상품 소개 이미지" multiple />
+        <ImageUploadSection title="구매자 추천 이미지" multiple />
+        <ProductInformationNotice />
+        <Delivery />
         <Benefit checked={isBenefit} onChange={handleOthersChange} />
         <Others checked={isPresent} onChange={handleOthersChange} />
       </Form>
