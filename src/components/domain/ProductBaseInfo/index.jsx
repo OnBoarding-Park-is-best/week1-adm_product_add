@@ -49,6 +49,7 @@ const ProductBaseInfo = () => {
   };
 
   const hideFilterTag = (e) => {
+    console.log('e', e);
     setShowFilterTagSearch(false);
   };
 
@@ -102,7 +103,6 @@ const ProductBaseInfo = () => {
             <Input
               placeholder="필터태그를 검색해 주세요."
               onFocus={showFilterTag}
-              // onBlur={hideFilterTag}
               onChange={(e) => {
                 setSearchTag(e.target.value);
               }}
@@ -113,7 +113,7 @@ const ProductBaseInfo = () => {
             <BtnWrap>
               <Button
                 onClick={showFilterTag}
-                onBlur={hideFilterTag}
+                // onBlur={hideFilterTag}
                 // position="absolute"
               >
                 검색
@@ -123,6 +123,7 @@ const ProductBaseInfo = () => {
           {showFilterTagSearch && (
             <FilterTags
               tagList={filteredTags}
+              hideFilterTag={hideFilterTag}
               handleSelectedTags={handleSelectedTags}
             />
           )}

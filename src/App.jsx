@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Layout, OptionSelector, ProductBaseInfo } from '@components/domain';
+import { Layout, OptionSelector } from '@components/domain';
 import useOptionSelector from '@hooks/useOptionSelector';
 
 const App = () => {
@@ -21,7 +21,6 @@ const App = () => {
   return (
     <Layout>
       <form id="register" onSubmit={handleSubmit}>
-        <ProductBaseInfo />
         <OptionSelector {...optionSelector} />
       </form>
     </Layout>

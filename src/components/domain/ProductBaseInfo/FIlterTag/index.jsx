@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Button from '@components/base/Button';
 import { BORDER_STYLE } from '@utils/constants';
 
-const FilterTags = ({ tagList, handleSelectedTags }) => {
+const FilterTags = ({ hideFilterTag, tagList, handleSelectedTags }) => {
   return (
-    <Container>
+    <Container onBlur={hideFilterTag}>
       {tagList ? (
         <FilterTagWrap>
           {tagList.length === 0 ? (
