@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DATE_NAME, PERIOD_NAME } from '@utils/constants';
+import { DATE_NAME, PERIOD_NAME, DATE_ID } from '@utils/constants';
 import { ContentContainer, ContentItem } from '@components/base';
 import { DateInput } from '@components/base';
 import RadioList from './RadioList/index';
@@ -11,25 +11,27 @@ const Period = () => {
     selected: PERIOD_NAME[0],
   });
 
-  const handleExposureChange = (e) => {
-    setExposureBtn({
-      ...exposureBtn,
-      selected: e.target.value,
-    });
-  };
   const [salesBtn, setSalesBtn] = useState({
     list: PERIOD_NAME,
     selected: PERIOD_NAME[0],
   });
 
-  const handleSalesChange = (e) => {
-    setSalesBtn({
-      ...salesBtn,
-      selected: e.target.value,
+  const handleExposureChange = (e) => {
+    const radio = e.target;
+    setExposureBtn({
+      ...exposureBtn,
+      selected: radio.value,
     });
   };
 
-  const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
+  const handleSalesChange = (e) => {
+    const radio = e.target;
+    setSalesBtn({
+      ...salesBtn,
+      selected: radio.value,
+    });
+  };
+
   const [date, setDate] = useState(DATE_NAME);
   const [minTime, setMinTime] = useState(null);
 
@@ -43,11 +45,11 @@ const Period = () => {
       return;
     }
     if (name === DATE_ID[1] && date < new Date()) {
-      setMinTime(name);
+      setMinTime(date);
       return;
     }
     if (name === DATE_ID[3] && date < new Date()) {
-      setMinTime(name);
+      setMinTime(date);
       return;
     }
   };
