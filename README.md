@@ -37,7 +37,7 @@
 ## 🧰 기술 스택 및 구현 사항
 ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) 
 
-### 📚 전체 구현사항
+## 📚 전체 구현사항
 - 상품등록 어드민 페이지를 구현합니다.
 
 ### ⏰ 노출 및 판매기간 설정_고동현
