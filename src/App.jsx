@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ContentContainer, ContentItem, Button } from '@components/base';
-import { Layout, OptionSelector, Benefit, Others } from '@components/domain';
+import {
+  Layout,
+  OptionSelector,
+  Benefit,
+  Others,
+  ProductBaseInfo,
+} from '@components/domain';
 import scrollStyle from '@styles/scrollStyle';
 import useApp from '@hooks/useApp';
 
@@ -20,6 +26,7 @@ const App = () => {
   return (
     <Layout>
       <Form id="register" onSubmit={handleSubmit}>
+        <ProductBaseInfo />
         <OptionSelector {...optionSelector} />
         <Benefit checked={isBenefit} onChange={handleOthersChange} />
         <Others checked={isPresent} onChange={handleOthersChange} />

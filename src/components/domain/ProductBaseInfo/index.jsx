@@ -136,6 +136,7 @@ const ProductBaseInfo = () => {
                 name="productName"
                 height="3rem"
                 placeholder="상품명을 입력해 주세요"
+                required
               />
             </Wrap>
           </ContentItem>
@@ -145,7 +146,7 @@ const ProductBaseInfo = () => {
         </ProductWrap>
         <ContentItem title={'상품 구성 소개 정보'} required>
           <Wrap>
-            <Input name="productInfo" height="3rem" />
+            <Input name="productInfo" height="3rem" required />
           </Wrap>
         </ContentItem>
         <ContentItem title={'상품 썸네일'}>
