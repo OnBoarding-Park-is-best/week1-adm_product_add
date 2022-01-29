@@ -49,7 +49,6 @@ const ProductBaseInfo = () => {
   };
 
   const hideFilterTag = (e) => {
-    console.log('e', e);
     setShowFilterTagSearch(false);
   };
 
@@ -61,6 +60,10 @@ const ProductBaseInfo = () => {
   const removeSelectedTag = (e) => {
     const targetText = e.target.closest('button').innerText;
     setSelectedTags((prev) => prev.filter((tag) => tag !== targetText));
+  };
+
+  const searchFilterTag = (e) => {
+    setSearchTag(e.target.value);
   };
 
   return (
@@ -103,21 +106,13 @@ const ProductBaseInfo = () => {
             <Input
               placeholder="필터태그를 검색해 주세요."
               onFocus={showFilterTag}
-              onChange={(e) => {
-                setSearchTag(e.target.value);
-              }}
+              onChange={searchFilterTag}
               height="3rem"
               padding="5rem"
               name="filterTagInput"
             />
             <BtnWrap>
-              <Button
-                onClick={showFilterTag}
-                // onBlur={hideFilterTag}
-                // position="absolute"
-              >
-                검색
-              </Button>
+              <Button onClick={showFilterTag}>검색</Button>
             </BtnWrap>
           </FilterTagWrap>
           {showFilterTagSearch && (
