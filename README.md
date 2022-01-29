@@ -11,10 +11,10 @@
 팀원들의 성을 차례로 읽어보세요!
 |                                                            	| 팀원                                                	| 역할                	|
 |------------------------------------------------------------	|-----------------------------------------------------	|---------------------	|
-| ![](https://avatars.githubusercontent.com/u/77766769?s=25) 	| 박정훈 [@Junghoon-P](https://github.com/Junghoon-P) 	| Base Component: Button \|	Domain Component: |
-| ![](https://avatars.githubusercontent.com/u/71081893?s=25) 	| 이소진 [@krungy](https://github.com/krungy)         	| Base Component: Input, Toggle, Icon \| Domain Component: |
-| ![](https://avatars.githubusercontent.com/u/57004991?s=25) 	| 최효정 [@hyo-choi](https://github.com/hyo-choi)     	| Base Component: Content title, Content container \| Domain Component:      	|
-| ![](https://avatars.githubusercontent.com/u/68905615?s=25) 	| 고동현 [@brad-go](https://github.com/brad-go)       	| Base Component: CheckBox, Radio \| Domain Component:      	|
+| ![](https://avatars.githubusercontent.com/u/77766769?s=25) 	| 박정훈 [@Junghoon-P](https://github.com/Junghoon-P) 	| (팀장) 상품 카테고리 선택 컴포넌트, 필터 태그 검색 컴포넌트 / Button 컴포넌트 |
+| ![](https://avatars.githubusercontent.com/u/71081893?s=25) 	| 이소진 [@krungy](https://github.com/krungy)         	| 상품 정보 고시 컴포넌트, 이미지 업로드 컴포넌트 / Input, Toggle, Icon 컴포넌트 |
+| ![](https://avatars.githubusercontent.com/u/57004991?s=25) 	| 최효정 [@hyo-choi](https://github.com/hyo-choi)     	| 상품 옵션 컴포넌트, 페이지 레이아웃 구성, 네비게이션 바 / Content title, Content container 컴포넌트 |
+| ![](https://avatars.githubusercontent.com/u/68905615?s=25) 	| 고동현 [@brad-go](https://github.com/brad-go)       	| 상품 노출 및 판매, 배송, 혜택과 기타 설정 컴포넌트 / CheckBox, Radio, Date 컴포넌트 |
 
 <br>
 
@@ -35,13 +35,13 @@
 <br>
 
 ## 🧰 기술 스택 및 구현 사항
-![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) 
+![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) 
 
 ### 전체 구현사항
 - 상품등록 어드민 페이지를 구현합니다.
 
 ### 노출 및 판매기간 설정
-- []
+- [x] 
 
 ### 상품 기본 정보
 - [x] 
@@ -67,18 +67,43 @@
 
 ```bash
 .
-├── public
-└── src
-    ├── components
-    │   ├── base
-    │   ├──
-    │   ├── domain
-    │   └── 
-    ├── pages
-    │   ├── FirstCalcPage
-    │   └── SecondCalcPage
-    ├── styles
-    ├── test
-    │   └── utils
-    └── utils
+├── assets
+├── class
+├── components
+│   ├── base
+│   │   ├── Button
+│   │   ├── CheckBox
+│   │   ├── ContentContainer
+│   │   ├── ContentItem
+│   │   ├── DateInput
+│   │   ├── Icon
+│   │   ├── Input
+│   │   ├── RadioBox
+│   │   ├── Toggle
+│   │   └── Upload
+│   └── domain
+│       ├── Benefit
+│       ├── Delivery
+│       │   ├── DateInputContainer
+│       │   └── DeliveryAlert
+│       ├── ImageUploadContainer
+│       ├── ImageUploadSection
+│       ├── Layout
+│       │   ├── NavBar
+│       │   └── NavButton
+│       ├── OptionSelector
+│       │   ├── AdditionalItem
+│       │   ├── OptionItem
+│       │   └── ProductItem
+│       ├── Others
+│       ├── Period
+│       │   └── RadioList
+│       ├── ProductBaseInfo
+│       │   ├── FIlterTag
+│       │   └── SelectedTags
+│       └── ProductInformationNotice
+│           └── InformationContentContainer
+├── hooks
+├── styles
+└── utils
 ```
