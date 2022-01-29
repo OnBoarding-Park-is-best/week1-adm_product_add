@@ -3,7 +3,7 @@ import useOptionSelector from '@hooks/useOptionSelector';
 import { TotalInfo } from '@class';
 
 const useApp = () => {
-  const [isModalOn, setModalOn] = useState('flex');
+  const [isModalOn, setModalOn] = useState(false);
   const [appState, setAppState] = useState(new TotalInfo());
   const optionSelector = useOptionSelector();
   const { products } = optionSelector;
@@ -13,6 +13,12 @@ const useApp = () => {
   useEffect(() => {
     setAppState((prev) => ({ ...prev, products, isPresent, isBenefit }));
   }, [products, isBenefit, isPresent]);
+
+  const toggleModal = useCallback((e) => {
+    if (e.target.classList.contains('modal-toggle')) {
+      setModalOn((prev) => !prev);
+    }
+  }, []);
 
   const handleOthersChange = useCallback((e) => {
     const name = e.target.name;
@@ -32,16 +38,15 @@ const useApp = () => {
         alert('상품 옵션을 하나 이상 등록하셔야 합니다.');
         return;
       }
-      setModalOn('flex');
-      console.log('saved!');
-      console.log(appState);
+      setModalOn(true);
     },
-    [products.length, appState],
+    [products.length],
   );
 
   return {
     appState,
     isModalOn,
+    toggleModal,
     optionSelector,
     isBenefit,
     isPresent,
