@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { deepCopy } from '@utils';
 import { Product, Option, AdditionalOption } from '@class';
 import { inputNumberFormat } from '@utils/price';
-import { FORMAT_NAME } from '../utils/constants';
+import { FORMAT_NAME } from '@utils/constants';
 
 const getProductIdFromEvent = (e) => {
   const element = e.target.closest('.product');

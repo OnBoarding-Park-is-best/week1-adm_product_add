@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import { Button } from '@components/base';
 import styled from 'styled-components';
 
 const Upload = ({ children, name, multiple, onChange, ...props }) => {
@@ -19,7 +20,7 @@ const Upload = ({ children, name, multiple, onChange, ...props }) => {
         ref={uploadInputRef}
         onChange={onChange}
       />
-      <Button type="button" onClick={handleUploadImage} {...props}>
+      <Button plusIcon width="164px" onClick={handleUploadImage} {...props}>
         {children}
       </Button>
     </UploadContainer>
@@ -32,10 +33,6 @@ const UploadContainer = styled.div`
 
 const Input = styled.input`
   display: none;
-`;
-
-const Button = styled.button`
-  all: unset;
 `;
 
 Upload.propTypes = {

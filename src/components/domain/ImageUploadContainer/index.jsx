@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { COLORS } from '@utils/constants';
 import { Button, Upload, Icon } from '@components/base';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -47,9 +46,7 @@ const ImageUploadContainer = ({ multiple }) => {
   return (
     <Container>
       <Upload onChange={handleUpload} name="imageUpload" multiple={multiple}>
-        <Button width="164px" plusIcon>
-          이미지 첨부
-        </Button>
+        이미지 첨부
       </Upload>
       <FileNameListContainer>{handleFileName(images)}</FileNameListContainer>
     </Container>
