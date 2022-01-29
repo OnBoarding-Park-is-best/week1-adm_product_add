@@ -22,6 +22,13 @@ export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
 
 export const PERIOD_NAME = ['제한없음', '미노출', '노출 기간 설정'];
 
+export const DATE_NAME = {
+  orderStart: null,
+  orderEnd: null,
+  express: null,
+  normal: null,
+};
+
 export const NAV_BAR_CONTENT = [
   {
     title: '회원',

@@ -2,9 +2,9 @@ import { RadioBox } from '@components/base';
 import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 
-const RadioList = ({ select, onChange }) => {
+const RadioList = ({ name, select, onChange }) => {
   return (
-    <RadioContainer>
+    <RadioContainer name={name}>
       {select.list &&
         select.list.map((value) => (
           <RadioBox

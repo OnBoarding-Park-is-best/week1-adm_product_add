@@ -1,94 +1,105 @@
-import { PERIOD_NAME } from '@utils/constants';
+import { useState } from 'react';
+import { DATE_NAME, PERIOD_NAME } from '@utils/constants';
 import { ContentContainer, ContentItem } from '@components/base';
 import { DateInput } from '@components/base';
 import RadioList from './RadioList/index';
 import styled from 'styled-components';
-import { useState } from 'react';
 
 const Period = () => {
-  // 라디오용
-  const [exposureSelect, setExposureSelect] = useState({
-    list: PERIOD_NAME,
-    selected: PERIOD_NAME[0],
-  });
-
-  const [saleSelect, setSaleSelect] = useState({
+  const [exposureBtn, setExposureBtn] = useState({
     list: PERIOD_NAME,
     selected: PERIOD_NAME[0],
   });
 
   const handleExposureChange = (e) => {
-    setExposureSelect({
-      ...exposureSelect,
+    setExposureBtn({
+      ...exposureBtn,
+      selected: e.target.value,
+    });
+  };
+  const [salesBtn, setSalesBtn] = useState({
+    list: PERIOD_NAME,
+    selected: PERIOD_NAME[0],
+  });
+
+  const handleSalesChange = (e) => {
+    setSalesBtn({
+      ...salesBtn,
       selected: e.target.value,
     });
   };
 
-  const handleSaleChange = (e) => {
-    setSaleSelect({
-      ...saleSelect,
-      selected: e.target.value,
-    });
-  };
+  const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
+  const [date, setDate] = useState(DATE_NAME);
+  const [minTime, setMinTime] = useState(null);
 
-  // 날짜용
-  const [exposureStartDate, setExposureStartDate] = useState(null);
-  const [exposureEndDate, setExposureEndDate] = useState(null);
-  const [saleStartDate, setSaleStartDate] = useState(null);
-  const [saleEndDate, setSaleEndDate] = useState(null);
-
-  const handleExposureStartDateChange = (newDate) => {
-    setExposureStartDate(newDate);
-  };
-  const handleExposureEndDateChange = (newDate) => {
-    setExposureEndDate(newDate);
-  };
-
-  const handleSaleStartDateChange = (newDate) => {
-    setSaleStartDate(newDate);
-  };
-  const handleSaleEndDateChange = (newDate) => {
-    setSaleEndDate(newDate);
+  const handleDateChange = (name, date) => {
+    setDate((prev) => ({
+      ...prev,
+      [name]: date,
+    }));
+    if (name === DATE_ID[0] || name === DATE_ID[2]) {
+      setMinTime(date);
+      return;
+    }
+    if (name === DATE_ID[1] && date < new Date()) {
+      setMinTime(name);
+      return;
+    }
+    if (name === DATE_ID[3] && date < new Date()) {
+      setMinTime(name);
+      return;
+    }
   };
 
   return (
     <ContentContainer title="노출 및 판매 기간 설정">
       <ContentItem title="상품 노출 기한">
         <StyledRadio>
-          <RadioList select={exposureSelect} onChange={handleExposureChange} />
+          <RadioList
+            name="exposure"
+            select={exposureBtn}
+            onChange={handleExposureChange}
+          />
           <DateContainer>
             <DateInput
-              today
               withTime
-              date={exposureStartDate}
-              onChange={handleExposureStartDateChange}
+              date={date[DATE_ID[0]]}
+              name={DATE_ID[0]}
+              onChange={handleDateChange}
             />
             <span> ~ </span>
             <DateInput
-              today
+              name={DATE_ID[1]}
+              minTime={minTime}
+              date={date[DATE_ID[1]]}
               withTime
-              date={exposureEndDate}
-              onChange={handleExposureEndDateChange}
+              onChange={handleDateChange}
             />
           </DateContainer>
         </StyledRadio>
       </ContentItem>
       <ContentItem title="상품 판매 기한">
         <StyledRadio>
-          <RadioList select={saleSelect} onChange={handleSaleChange} />
+          <RadioList
+            name="sales"
+            select={salesBtn}
+            onChange={handleSalesChange}
+          />
           <DateContainer>
             <DateInput
-              today
               withTime
-              date={saleStartDate}
-              onChange={handleSaleStartDateChange}
+              date={date[DATE_ID[2]]}
+              name={DATE_ID[2]}
+              onChange={handleDateChange}
             />
             <span> ~ </span>
             <DateInput
-              today
               withTime
-              date={saleEndDate}
-              onChange={handleSaleEndDateChange}
+              date={date[DATE_ID[3]]}
+              name={DATE_ID[3]}
+              minTime={minTime}
+              onChange={handleDateChange}
             />
           </DateContainer>
         </StyledRadio>
