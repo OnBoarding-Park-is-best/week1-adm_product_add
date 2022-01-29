@@ -77,9 +77,6 @@ const InformationContentContainer = ({ infoIndex, ...props }) => {
     <ProductInformationNoticeContainer {...props}>
       <TitleContainer>
         <Text componentTitle>정보고시 {infoIndex}</Text>
-        {/* <Button deleteGrey onClick={() => onDelete()}>
-          삭제
-        </Button> */}
       </TitleContainer>
       <ContentContainer>
         {handleInformationContent(INFORMATION_NOTICE_CONTENT_LIST)}
