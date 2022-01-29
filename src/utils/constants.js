@@ -73,6 +73,41 @@ export const NO_DISCOUNT = '할인율 없음';
 
 export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
 
+export const PERIOD_NAME = ['제한없음', '미노출', '노출 기간 설정'];
+
+export const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
+
+export const DATE_NAME = {
+  orderStart: null,
+  orderEnd: null,
+  express: null,
+  normal: null,
+};
+
+export const TOGGLE_NAME = {
+  departure: false,
+  receipt: false,
+  reservation: false,
+};
+
+export const DELIVERY_DATA = [
+  {
+    id: 'departure',
+    title: '사용자 배송일 출발일 지정',
+    dateRequire: false,
+  },
+  {
+    id: 'receipt',
+    title: '방문 수령',
+    dateRequire: false,
+  },
+  {
+    id: 'reservation',
+    title: '선 주문 예약 배송',
+    dateRequire: true,
+  },
+];
+
 export const NAV_BAR_CONTENT = [
   {
     title: '회원',

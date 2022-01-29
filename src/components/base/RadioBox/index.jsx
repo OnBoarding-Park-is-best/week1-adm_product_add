@@ -6,35 +6,43 @@ import styled from 'styled-components';
 const RadioBox = ({ id, value, checked, onChange }) => {
   return (
     <RadioLabel htmlFor={id}>
-      <RadioInput id={id} value={value} type="radio" checked={checked} onChange={onChange}/>
-      <StyledRadioBox><StyledRadio checked={checked} /></StyledRadioBox>
+      <RadioInput
+        id={id}
+        value={value}
+        type="radio"
+        checked={checked}
+        onChange={onChange}
+      />
+      <StyledRadioBox>
+        <StyledRadio checked={checked} />
+      </StyledRadioBox>
       {value}
     </RadioLabel>
-  )
-}
+  );
+};
 
 RadioBox.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   value: PropTypes.string,
   checked: PropTypes.bool,
-}
+};
 
 const RadioLabel = styled.label`
   display: block;
 `;
 
 const RadioInput = styled.input`
-  position: absolute; 
+  position: absolute;
   width: 1px;
-  height: 1px; 
-  margin: -1px; 
-  padding: 0; 
-  border: 0; 
-  clip: rect(0 0 0 0); 
-  clippath: inset(50%); 
-  overflow: hidden; 
-  white-space: nowrap; 
-`
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+`;
 
 const StyledRadioBox = styled.div`
   position: relative;
@@ -45,7 +53,7 @@ const StyledRadioBox = styled.div`
   transform: translate(0, 4px);
   border: solid 0.1rem ${COLORS.grey};
   border-radius: 50%;
-`
+`;
 
 const StyledRadio = styled.div`
   position: absolute;
@@ -54,10 +62,10 @@ const StyledRadio = styled.div`
   display: inline-block;
   width: 12px;
   height: 12px;
-  background: ${props => props.checked ? COLORS.purple_90 : 'white'}; 
-  border-radius: 50%; 
+  background: ${(props) => (props.checked ? COLORS.purple_90 : 'white')};
+  border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: all 150ms;
-`
+`;
 
 export default RadioBox;
