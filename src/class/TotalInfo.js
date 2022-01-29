@@ -32,7 +32,7 @@ class TotalInfo {
   reservedDelivery;
 
   // NOTE: 상품 혜택 허용 설정 (19)
-  isMileage;
+  isBenefit;
 
   // NOTE: 기타 설정 (20)
   isPresent;

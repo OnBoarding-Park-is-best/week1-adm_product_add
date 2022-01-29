@@ -18,7 +18,7 @@ const Benefit = ({ checked, onChange }) => {
 
 Benefit.propTypes = {
   checked: PropTypes.bool,
-  onCHangeChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 const StyledToggle = styled.div`
