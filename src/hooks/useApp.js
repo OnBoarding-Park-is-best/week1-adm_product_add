@@ -9,10 +9,19 @@ const useApp = () => {
   const { products } = optionSelector;
   const [isBenefit, setBenefit] = useState(true);
   const [isPresent, setPresent] = useState(false);
+  // 각 state 끌어올린 것 여기에 추가
 
   useEffect(() => {
-    setAppState((prev) => ({ ...prev, products, isPresent, isBenefit }));
+    setAppState((prev) => ({
+      ...prev,
+      products,
+      isPresent,
+      isBenefit,
+      // isPickup: state명, // 끌어올린 state 이름이 다른 경우
+    }));
   }, [products, isBenefit, isPresent]);
+  // }, [products, isBenefit, isPresent, state명]);
+  // @class/TotalInfo에서 각자 맞는 이름 찾아 넣기
 
   const toggleModal = useCallback((e) => {
     if (e.target.classList.contains('modal-toggle')) {
@@ -52,6 +61,7 @@ const useApp = () => {
     isPresent,
     handleOthersChange,
     handleSubmit,
+    // Domain에 handler 내려줘야 할 때에는 이 파일에서 작성하고 여기서 return한 후에 App에서 받아 내려주기
   };
 };
 
