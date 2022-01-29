@@ -17,16 +17,18 @@ const Period = () => {
   });
 
   const handleExposureChange = (e) => {
+    const radio = e.target;
     setExposureBtn({
       ...exposureBtn,
-      selected: e.target.value,
+      selected: radio.value,
     });
   };
 
   const handleSalesChange = (e) => {
+    const radio = e.target;
     setSalesBtn({
       ...salesBtn,
-      selected: e.target.value,
+      selected: radio.value,
     });
   };
 

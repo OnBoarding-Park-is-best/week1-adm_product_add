@@ -7,7 +7,7 @@ export const DeliveryAlert = ({ onClick }) => {
     <DeliveryAlertContainer>
       <DeliveryText>주문 시간 이후로 출고일을 지정해 주세요.</DeliveryText>
       <DeliveryBottom>
-        <Button deleteGrey onClick={onClick}>
+        <Button cancel onClick={onClick}>
           취소
         </Button>
         <Button confirm onClick={onClick}>
@@ -28,6 +28,7 @@ const DeliveryAlertContainer = styled.div`
   border-radius: 10px;
   background-color: #fff;
   transform: translate(-50%, -50%);
+  transition: all 0.4s ease-in-out;
   z-index: 999;
 `;
 const DeliveryText = styled.p`
