@@ -5,3 +5,4 @@ export { default as Benefit } from './Benefit';
 export { default as ProductInformationNotice } from './ProductInformationNotice';
 export { default as Layout } from './Layout';
 export { default as ProductBaseInfo } from './ProductBaseInfo';
+export { default as ImageUploadSection } from './ImageUploadSection';
