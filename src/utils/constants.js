@@ -20,6 +20,21 @@ export const NO_DISCOUNT = '할인율 없음';
 
 export const FORMAT_NAME = ['normalPrice', 'sellPrice', 'stock'];
 
+export const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
+
+export const DATE_NAME = {
+  orderStart: null,
+  orderEnd: null,
+  express: null,
+  normal: null,
+};
+
+export const TOGGLE_NAME = {
+  departure: false,
+  receipt: false,
+  reservation: false,
+};
+
 export const DELIVERY_DATA = [
   {
     id: 'departure',

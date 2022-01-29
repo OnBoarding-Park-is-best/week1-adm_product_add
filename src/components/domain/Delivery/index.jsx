@@ -1,28 +1,18 @@
 import React from 'react';
-import { DELIVERY_DATA } from '@utils/constants';
+import {
+  DELIVERY_DATA,
+  DATE_NAME,
+  DATE_ID,
+  TOGGLE_NAME,
+} from '@utils/constants';
 import { ContentContainer, ContentItem, Toggle } from '@components/base';
 import DateInputContainer from './DateInputContainer';
 import { DeliveryAlert } from './DeliveryAlert';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-const initialState = {
-  departure: false,
-  receipt: false,
-  reservation: false,
-};
-
-const initialDate = {
-  orderStart: null,
-  orderEnd: null,
-  express: null,
-  normal: null,
-};
-
-const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
-
 const Delivery = () => {
-  const [date, setDate] = useState(initialDate);
+  const [date, setDate] = useState(DATE_NAME);
   const [minTime, setMinTime] = useState(null);
   const [selectedDate, setSelectedDate] = useState({});
   const [checkedToggles, setCheckedToggles] = useState([]);
@@ -62,7 +52,7 @@ const Delivery = () => {
     const name = e.target.name;
 
     if (name === DELIVERY_DATA[2].id && isChecked) {
-      setCheckedToggles({ ...initialState, [name]: true });
+      setCheckedToggles({ ...TOGGLE_NAME, [name]: true });
       return;
     }
     if (isChecked) {
