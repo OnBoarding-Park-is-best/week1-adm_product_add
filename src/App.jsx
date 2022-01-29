@@ -1,7 +1,5 @@
 import { OptionSelector } from '@components/domain';
 import useOptionSelector from '@hooks/useOptionSelector';
-import { Delivery } from '@components/domain';
-import { useState } from 'react';
 
 const App = () => {
   const optionSelector = useOptionSelector();
@@ -9,8 +7,7 @@ const App = () => {
 
   return (
     <>
-      {/* <OptionSelector {...optionSelector} /> */}
-      <Delivery />
+      <OptionSelector {...optionSelector} />
     </>
   );
 };
