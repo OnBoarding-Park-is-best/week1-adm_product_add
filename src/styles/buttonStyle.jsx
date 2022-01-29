@@ -35,7 +35,12 @@ const buttonStyle = css`
     ${(props) =>
     props.selectCategory &&
     css`
+      margin-bottom: 1rem;
       background-color: ${COLORS.purple_30};
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     `}
 
     ${(props) =>
