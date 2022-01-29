@@ -1,7 +1,6 @@
 import { COLORS } from '@utils/constants';
 import { Button } from '@components/base';
 import styled from 'styled-components';
-import { useState } from 'react';
 
 export const DeliveryAlert = ({ onClick }) => {
   return (

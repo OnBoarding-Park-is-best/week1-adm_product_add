@@ -37,7 +37,7 @@ const Delivery = () => {
         ...prev,
         [DELIVERY_DATA[2].id]: false,
       }));
-      setMinTime(name);
+      setMinTime(date);
       return;
     }
     if (name === DATE_ID[2] || name === DATE_ID[3]) {

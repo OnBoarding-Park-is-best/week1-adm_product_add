@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
+import { DATE_ID } from '@utils/constants';
 import { DateInput } from '@components/base';
 import styled from 'styled-components';
-
-const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
 
 const DateInputContainer = ({ date, minTime, onChange, disableDays }) => {
   return (

@@ -11,16 +11,17 @@ const Period = () => {
     selected: PERIOD_NAME[0],
   });
 
+  const [salesBtn, setSalesBtn] = useState({
+    list: PERIOD_NAME,
+    selected: PERIOD_NAME[0],
+  });
+
   const handleExposureChange = (e) => {
     setExposureBtn({
       ...exposureBtn,
       selected: e.target.value,
     });
   };
-  const [salesBtn, setSalesBtn] = useState({
-    list: PERIOD_NAME,
-    selected: PERIOD_NAME[0],
-  });
 
   const handleSalesChange = (e) => {
     setSalesBtn({
@@ -43,11 +44,11 @@ const Period = () => {
       return;
     }
     if (name === DATE_ID[1] && date < new Date()) {
-      setMinTime(name);
+      setMinTime(date);
       return;
     }
     if (name === DATE_ID[3] && date < new Date()) {
-      setMinTime(name);
+      setMinTime(date);
       return;
     }
   };

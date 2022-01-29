@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { Layout, OptionSelector } from '@components/domain';
 import useOptionSelector from '@hooks/useOptionSelector';
+import { Period, Delivery } from '@components/domain';
 
 const App = () => {
   const optionSelector = useOptionSelector();
@@ -21,6 +22,8 @@ const App = () => {
   return (
     <Layout>
       <form id="register" onSubmit={handleSubmit}>
+        <Period />
+        <Delivery />
         <OptionSelector {...optionSelector} />
       </form>
     </Layout>
