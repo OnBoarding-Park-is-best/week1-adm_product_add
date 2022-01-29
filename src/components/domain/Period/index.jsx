@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DATE_NAME, PERIOD_NAME } from '@utils/constants';
+import { DATE_NAME, PERIOD_NAME, DATE_ID } from '@utils/constants';
 import { ContentContainer, ContentItem } from '@components/base';
 import { DateInput } from '@components/base';
 import RadioList from './RadioList/index';
@@ -32,7 +32,6 @@ const Period = () => {
     });
   };
 
-  const DATE_ID = ['orderStart', 'orderEnd', 'express', 'normal'];
   const [date, setDate] = useState(DATE_NAME);
   const [minTime, setMinTime] = useState(null);
 
