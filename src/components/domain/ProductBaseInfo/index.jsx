@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ImageUploadContainer from '@components/domain/ImageUploadContainer';
 import ContentContainer from '@components/base/ContentContainer';
 import ContentItem from '@components/base/ContentItem';
@@ -26,45 +26,56 @@ const ProductBaseInfo = () => {
     return '';
   });
 
-  const checkedHandler = (e) => {
-    if (e.target.checked === true) {
-      setCategoryChecked([...categoryChecked, e.target.name]);
-    } else if (e.target.checked === false) {
+  const checkedHandler = useCallback(
+    (e) => {
+      if (e.target.checked === true) {
+        setCategoryChecked([...categoryChecked, e.target.name]);
+      } else if (e.target.checked === false) {
+        setCategoryChecked(
+          categoryChecked.filter(
+            (categoryChk) => categoryChk !== e.target.name,
+          ),
+        );
+      }
+    },
+    [categoryChecked],
+  );
+
+  const removeFilter = useCallback(
+    (e) => {
       setCategoryChecked(
-        categoryChecked.filter((categoryChk) => categoryChk !== e.target.name),
+        categoryChecked.filter(
+          (categoryChk) => categoryChk !== e.target.innerText,
+        ),
       );
-    }
-  };
+    },
+    [categoryChecked],
+  );
 
-  const removeFilter = (e) => {
-    setCategoryChecked(
-      categoryChecked.filter(
-        (categoryChk) => categoryChk !== e.target.innerText,
-      ),
-    );
-  };
-
-  const showFilterTag = (e) => {
+  const showFilterTag = () => {
     setShowFilterTagSearch(true);
   };
 
-  const hideFilterTag = (e) => {
+  const hideFilterTag = () => {
     setShowFilterTagSearch(false);
   };
 
-  const handleSelectedTags = (e) => {
-    if (!selectedTags.includes(e.target.innerText))
-      setSelectedTags([...selectedTags, e.target.innerText]);
-  };
+  const handleSelectedTags = useCallback(
+    (e) => {
+      if (!selectedTags.includes(e.target.innerText))
+        setSelectedTags([...selectedTags, e.target.innerText]);
+    },
+    [selectedTags],
+  );
 
   const removeSelectedTag = (e) => {
     const targetText = e.target.closest('button').innerText;
     setSelectedTags((prev) => prev.filter((tag) => tag !== targetText));
   };
 
-  const searchFilterTag = (e) => {
+  const searchFilterTag = useCallback((e) => {
     setSearchTag(e.target.value);
-  };
+  }, []);
 
   return (
     <>
@@ -115,6 +126,7 @@ const ProductBaseInfo = () => {
               <Button onClick={showFilterTag}>검색</Button>
             </BtnWrap>
           </FilterTagWrap>
+
           {showFilterTagSearch && (
             <FilterTags
               tagList={filteredTags}
@@ -122,6 +134,7 @@ const ProductBaseInfo = () => {
               handleSelectedTags={handleSelectedTags}
             />
           )}
+
           {selectedTags.length > 0 && (
             <SelectedTags
               selectedTags={selectedTags}
